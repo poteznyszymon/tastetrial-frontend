@@ -21,7 +21,7 @@ export class AuthService {
       );
       this.authorizedUser.next(user);
       this.authorizedUser.next(null);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
     } finally {
       this.isLoading.next(false);

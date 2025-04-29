@@ -1,6 +1,63 @@
 section {
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem - 1px);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+p {
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+}
+
+.card {
+  border: solid 1px var(--border);
+  border-radius: var(--radius);
+  max-width: 25rem;
+  width: 100%;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.button {
+  width: 100%;
+}
+
+:host ::ng-deep button {
+  width: 100%;
+}
+
+.login-footer {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.login-footer > a {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.login-footer > a:hover {
+  text-decoration: underline;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 550px) {
+  section {
+    padding: 0;
+  }
 }

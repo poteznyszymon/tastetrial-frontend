@@ -1,1 +1,40 @@
-<section>register page</section>
+<section>
+  <h2>Register to TasteTrial</h2>
+  <p>Enter your data to create account</p>
+  <form class="card">
+    <div class="card-top">
+      <app-custom-input
+        labelText="First Name"
+        id="first-name"
+        type="text"
+        [value]="firstName()"
+        (onValueChange)="firstName.set($event)"
+      ></app-custom-input>
+      <app-custom-input
+        labelText="Last Name"
+        id="last-name"
+        type="text"
+        [value]="lastName()"
+        (onValueChange)="lastName.set($event)"
+      ></app-custom-input>
+    </div>
+    <app-custom-input
+      labelText="Username"
+      id="login"
+      type="text"
+      [value]="username()"
+      (onValueChange)="username.set($event)"
+    ></app-custom-input>
+    <app-custom-input
+      labelText="Password"
+      [showHidePasswordButton]="true"
+      [value]="password()"
+      (onValueChange)="password.set($event)"
+    ></app-custom-input>
+    <app-loading-button text="Register"></app-loading-button>
+  </form>
+  <div class="login-footer">
+    <p>Already have an account?</p>
+    <a routerLink="/login">Login</a>
+  </div>
+</section>

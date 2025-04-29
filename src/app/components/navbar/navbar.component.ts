@@ -3,24 +3,35 @@ import { Router, RouterLink } from '@angular/router';
 import { LoadingButtonComponent } from '../loading-button/loading-button.component';
 import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { AuthService } from '../../auth/auth.service';
+import { Loader2, LucideAngularModule } from 'lucide-angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, LoadingButtonComponent, IconButtonComponent],
+  imports: [
+    RouterLink,
+    LoadingButtonComponent,
+    IconButtonComponent,
+    LucideAngularModule,
+    CommonModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
   loginButtonText = signal('Login');
-
   registerButtonText = signal('Register');
 
   isMenuOpen = signal(false);
 
   user$;
+  isLoading$;
+
+  Loader2 = Loader2;
 
   constructor(private authService: AuthService, private router: Router) {
     this.user$ = authService.getCurrentUser();
+    this.isLoading$ = authService.getIsLoading();
   }
 
   handleMenuClick = (close?: boolean) => {

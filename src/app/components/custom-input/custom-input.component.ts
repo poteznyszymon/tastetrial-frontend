@@ -9,10 +9,11 @@ import {
 } from '@angular/core';
 import { LoadingButtonComponent } from '../loading-button/loading-button.component';
 import { Lock, LucideAngularModule, LockOpen } from 'lucide-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input',
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule],
   templateUrl: './custom-input.component.html',
   styleUrl: './custom-input.component.css',
 })
