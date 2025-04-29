@@ -1,0 +1,55 @@
+<div class="navbar-container">
+  <div class="navbar-inner-container">
+    <a routerLink="/" (click)="handleMenuClick(true)"><h3>TasteTrial</h3></a>
+    <div class="desktop-links">
+      <a routerLink="" class="link"><p>Home</p></a>
+      <a routerLink="profile" class="link"><p>Profile</p></a>
+      <a routerLink="Restaurants" class="link"><p>Restaurants</p></a>
+    </div>
+    <div class="button-container">
+      <app-loading-button
+        [text]="loginButtonText()"
+        type="secondary"
+        (clicked)="onClick('login')"
+      ></app-loading-button>
+      <app-loading-button
+        [text]="registerButtonText()"
+        type="primary"
+        (clicked)="onClick('register')"
+      ></app-loading-button>
+    </div>
+    <app-icon-button
+      class="icon-button"
+      [type]="!isMenuOpen() ? 'menu' : 'x'"
+      (click)="handleMenuClick()"
+    ></app-icon-button>
+  </div>
+</div>
+<div class="mobile-menu-container" [class.open]="isMenuOpen()">
+  <ul class="links">
+    <a routerLink="/" (click)="handleMenuClick()">
+      <li class="link">Home</li>
+    </a>
+    <a routerLink="/" (click)="handleMenuClick()">
+      <li class="link">Restaurants</li>
+    </a>
+    <a routerLink="/" (click)="handleMenuClick()">
+      <li class="link">Add review</li>
+    </a>
+    <a routerLink="/profile" (click)="handleMenuClick()">
+      <li class="link">Profile</li>
+    </a>
+    <div class="mobile-button-container">
+      <app-loading-button
+        [text]="loginButtonText()"
+        type="secondary"
+        (clicked)="onClick('login')"
+      ></app-loading-button>
+      <app-loading-button
+        [text]="registerButtonText()"
+        type="primary"
+        (clicked)="onClick('register')"
+      ></app-loading-button>
+    </div>
+  </ul>
+</div>

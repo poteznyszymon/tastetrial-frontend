@@ -1,0 +1,13 @@
+<button
+  [ngClass]="{
+    loading: loading,
+    primary: type === 'primary',
+    secondary: type === 'secondary'
+  }"
+  (click)="onClick($event)"
+>
+  <p>{{ text }}</p>
+  <div class="icon-wrapper" *ngIf="loading">
+    <lucide-angular [img]="Loader2" size="18"></lucide-angular>
+  </div>
+</button>

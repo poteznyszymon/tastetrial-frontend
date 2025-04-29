@@ -1,0 +1,72 @@
+button {
+  padding: 0.6rem 1.3rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  position: relative;
+  user-select: none;
+}
+
+button.primary {
+  background-color: var(--primary);
+  color: var(--background);
+}
+
+button.secondary {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+}
+
+button.loading {
+  cursor: not-allowed;
+}
+
+button.primary.loading {
+  opacity: 0.9;
+}
+
+button.secondary.loading {
+  background-color: var(--secondary);
+}
+
+button.primary:hover {
+  opacity: 0.9;
+}
+
+button.secondary:hover {
+  background-color: var(--secondary);
+}
+
+button.loading > p {
+  opacity: 0;
+}
+
+.icon-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+lucide-angular {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

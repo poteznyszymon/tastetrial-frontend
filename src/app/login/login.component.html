@@ -1,0 +1,28 @@
+<section>
+  <h2>Login to TasteTrial</h2>
+  <p>Enter your credentials to get access</p>
+  <form class="card">
+    <app-custom-input
+      labelText="Email address"
+      placeholder="example@gmail.com"
+      id="login"
+      type="email"
+      [value]="email()"
+      (onValueChange)="email.set($event)"
+    ></app-custom-input>
+    <app-custom-input
+      labelText="Password"
+      [showHidePasswordButton]="true"
+      [value]="password()"
+      (onValueChange)="password.set($event)"
+    ></app-custom-input>
+    <app-loading-button
+      text="login"
+      (clicked)="handleClick()"
+    ></app-loading-button>
+  </form>
+  <div class="login-footer">
+    <p>Don't have an account?</p>
+    <a routerLink="register">Register</a>
+  </div>
+</section>
