@@ -47,6 +47,7 @@
   width: 100%;
   transition: all 400ms ease-in-out;
   z-index: 10;
+  box-shadow: 0px -3px 20px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-menu-container.open {

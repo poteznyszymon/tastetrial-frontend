@@ -1,0 +1,24 @@
+<div
+  class="banner-container"
+  *ngIf="visible()"
+  [style.transform]="'translateX(' + translateX() + 'px)'"
+  [style.transition]="!isDragging ? 'transform 0.3s ease' : 'none'"
+  (mousedown)="onDragStart($event)"
+  (mousemove)="onDragMove($event)"
+  (mouseup)="onDragEnd()"
+  (touchstart)="onDragStart($event)"
+  (touchmove)="onDragMove($event)"
+  (touchend)="onDragEnd()"
+>
+  <div class="banner-top">
+    <p>Cookies Notice</p>
+    <div class="icon-wrapper" (click)="visible.set(false)">
+      <lucide-angular [img]="X" size="15"></lucide-angular>
+    </div>
+  </div>
+  <p class="text-info">
+    This website uses cookies for authorization and to ensure the best
+    experience.
+  </p>
+  <button class="accept-button" (click)="handleAcceptClick()">Accept</button>
+</div>
