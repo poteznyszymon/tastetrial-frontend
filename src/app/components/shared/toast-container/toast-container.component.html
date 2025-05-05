@@ -1,0 +1,8 @@
+<div class="toast-container">
+  <ng-container *ngFor="let msg of messages$ | async">
+    <app-toast
+      [message]="msg.text"
+      (handleClick)="handleDismiss(msg.id)"
+    ></app-toast>
+  </ng-container>
+</div>

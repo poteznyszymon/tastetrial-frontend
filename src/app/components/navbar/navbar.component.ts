@@ -24,12 +24,14 @@ export class NavbarComponent {
 
   user$;
   isLoading$;
+  isLogginOutLoading$;
 
   Loader2 = Loader2;
 
   constructor(private authService: AuthService, private router: Router) {
     this.user$ = authService.getCurrentUser();
     this.isLoading$ = authService.getIsLoading();
+    this.isLogginOutLoading$ = authService.getIsLogginOutLoading();
   }
 
   handleMenuClick = (close?: boolean) => {
@@ -42,8 +44,14 @@ export class NavbarComponent {
     this.isDropdownOpen.update((prev) => !prev);
   };
 
+  handleLogout = async () => {
+    await this.authService.logoutUser();
+    this.isMenuOpen.set(false);
+  };
+
   onClick = async (location: 'login' | 'register') => {
     await this.router.navigate([location]);
+    this.isMenuOpen.set(false);
   };
 
   @HostListener('document:click', ['$event'])

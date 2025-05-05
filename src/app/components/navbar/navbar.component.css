@@ -109,6 +109,7 @@
   cursor: pointer;
   user-select: none;
   position: relative;
+  font-size: 0.9rem;
 }
 
 .dropdown {
@@ -140,8 +141,12 @@
   cursor: pointer;
 }
 
+.dropdown > button:hover {
+  text-decoration: underline;
+}
+
 .loader-wrapper {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -174,6 +179,9 @@ lucide-angular {
     display: flex;
   }
   .avatar {
+    display: flex;
+  }
+  .loader-wrapper {
     display: flex;
   }
 }

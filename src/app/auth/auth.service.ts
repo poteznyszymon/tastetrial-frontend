@@ -11,6 +11,7 @@ export class AuthService {
   private authorizedUser = new BehaviorSubject<User | null>(null);
   private isLoading = new BehaviorSubject<boolean>(false);
   private isLogginInLoading = new BehaviorSubject<boolean>(false);
+  private isLoggingoutLoading = new BehaviorSubject<boolean>(false);
 
   constructor(public httpClient: HttpClient, public router: Router) {}
 
@@ -53,6 +54,20 @@ export class AuthService {
     }
   }
 
+  public async logoutUser(): Promise<void> {
+    this.isLoggingoutLoading.next(true);
+    try {
+      const respone = await firstValueFrom(
+        this.httpClient.post('/api/auth/logout', {})
+      );
+      this.authorizedUser.next(null);
+    } catch (error) {
+      this.isLoggingoutLoading.next(true);
+    } finally {
+      this.isLoggingoutLoading.next(false);
+    }
+  }
+
   public getCurrentUser = (): Observable<User | null> => {
     return this.authorizedUser.asObservable();
   };
@@ -63,5 +78,9 @@ export class AuthService {
 
   public getIsLogginInLoading = (): Observable<boolean> => {
     return this.isLogginInLoading.asObservable();
+  };
+
+  public getIsLogginOutLoading = (): Observable<boolean> => {
+    return this.isLoggingoutLoading.asObservable();
   };
 }

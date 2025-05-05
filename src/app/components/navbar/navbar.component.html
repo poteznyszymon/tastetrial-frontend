@@ -30,7 +30,7 @@
         {{ user.username.slice(0, 2) }}
         <div class="dropdown" *ngIf="isDropdownOpen()">
           <a routerLink="/profile">{{ "@" + user.username }}</a>
-          <button>Logout</button>
+          <button (click)="handleLogout()">Logout</button>
         </div>
       </button>
     </ng-container>
@@ -75,7 +75,8 @@
         *ngIf="user$ | async"
         text="Logout"
         type="secondary"
-        [loading]="true"
+        [loading]="(isLogginOutLoading$ | async) ?? false"
+        (clicked)="handleLogout()"
       ></app-loading-button>
     </div>
   </ul>
