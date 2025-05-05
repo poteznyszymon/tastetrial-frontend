@@ -19,9 +19,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  loginButtonText = signal('Login');
-  registerButtonText = signal('Register');
-
   isMenuOpen = signal(false);
 
   user$;

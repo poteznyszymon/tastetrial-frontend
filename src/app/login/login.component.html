@@ -2,21 +2,51 @@
   <h2>Login to TasteTrial</h2>
   <p>Enter your credentials to get access</p>
   <form class="card" [formGroup]="loginForm">
-    <app-custom-input
-      labelText="Username"
-      id="username"
-      type="text"
-      [value]="username()"
-      (onValueChange)="username.set($event)"
-    ></app-custom-input>
-    <app-custom-input
-      labelText="Password"
-      id="password"
-      [showHidePasswordButton]="true"
-      [value]="password()"
-      (onValueChange)="password.set($event)"
-    ></app-custom-input>
+    <div class="input-wrapper">
+      <label for="username">Username</label>
+      <div class="input-box">
+        <input id="username" type="text" formControlName="username" />
+      </div>
+      <div *ngIf="username.invalid && username.touched">
+        <p class="error-message" *ngIf="username.errors?.['required']">
+          Username is required
+        </p>
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <label for="password">Password</label>
+      <div class="input-box">
+        <input
+          id="password"
+          [type]="hideText() ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <div
+          *ngIf="hideText()"
+          class="button-wrapper"
+          (click)="handleSwitchHideText()"
+        >
+          <lucide-angular [img]="Lock" size="15"></lucide-angular>
+        </div>
+        <div
+          *ngIf="!hideText()"
+          class="button-wrapper"
+          (click)="handleSwitchHideText()"
+        >
+          <lucide-angular [img]="LockOpen" size="15"></lucide-angular>
+        </div>
+      </div>
+      <div *ngIf="password.invalid && password.touched">
+        <p class="error-message" *ngIf="password.errors?.['required']">
+          Password is required
+        </p>
+        <p class="error-message" *ngIf="password.errors?.['minlength']">
+          Password must be at least 6 characters
+        </p>
+      </div>
+    </div>
     <app-loading-button
+      [loading]="(isLoading$ | async) ?? false"
       text="Login"
       (clicked)="handleClick()"
     ></app-loading-button>

@@ -86,10 +86,39 @@
   cursor: pointer;
   font-size: 0.9rem;
   color: var(--foreground);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .desktop-links > .link:hover {
   color: var(--primary);
+}
+
+.avatar {
+  border-radius: 50%;
+  background-color: var(--muted);
+  height: 2.3rem;
+  width: 2.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px var(--border);
+  display: none;
+}
+
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+lucide-angular {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: 1s linear infinite spin;
 }
 
 @media (min-width: 1250px) {
@@ -111,5 +140,17 @@
   }
   .desktop-links {
     display: flex;
+  }
+  .avatar {
+    display: flex;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -1,9 +1,8 @@
 <div class="input-wrapper">
-  <label *ngIf="labelText" for="{{ id }}">{{ labelText }}</label>
+  <label *ngIf="labelText" [for]="id">{{ labelText }}</label>
   <div class="input-box">
     <input
       [value]="value"
-      (input)="onChange($event)"
       [id]="id"
       [type]="hideText() && showHidePasswordButton ? 'password' : 'text'"
       [placeholder]="placeholder"

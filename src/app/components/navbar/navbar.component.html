@@ -6,21 +6,29 @@
       <a routerLink="profile" class="link"><p>Profile</p></a>
       <a routerLink="Restaurants" class="link"><p>Restaurants</p></a>
     </div>
-    <div class="button-container">
+    <div
+      *ngIf="(user$ | async) === null && (isLoading$ | async) === false"
+      class="button-container"
+    >
       <app-loading-button
-        [text]="loginButtonText()"
+        text="Login"
         type="secondary"
         (clicked)="onClick('login')"
-        [loading]="(isLoading$ | async) ?? false"
       ></app-loading-button>
       <app-loading-button
-        [text]="registerButtonText()"
+        text="Register"
         type="primary"
         (clicked)="onClick('register')"
-        [loading]="(isLoading$ | async) ?? false"
       ></app-loading-button>
     </div>
-
+    <ng-container *ngIf="user$ | async as user">
+      <div *ngIf="!(isLoading$ | async)" class="avatar">
+        {{ user.username.slice(0, 2) }}
+      </div>
+    </ng-container>
+    <div class="loader-wrapper" *ngIf="isLoading$ | async">
+      <lucide-angular [img]="Loader2"></lucide-angular>
+    </div>
     <app-icon-button
       class="icon-button"
       [type]="!isMenuOpen() ? 'menu' : 'x'"
@@ -44,16 +52,22 @@
     </a>
     <div class="mobile-button-container">
       <app-loading-button
-        [text]="loginButtonText()"
+        *ngIf="!(user$ | async)"
+        text="Login"
         type="secondary"
         (clicked)="onClick('login')"
-        [loading]="(isLoading$ | async) ?? false"
       ></app-loading-button>
       <app-loading-button
-        [text]="registerButtonText()"
+        *ngIf="!(user$ | async)"
+        text="Register"
         type="primary"
         (clicked)="onClick('register')"
-        [loading]="(isLoading$ | async) ?? false"
+      ></app-loading-button>
+      <app-loading-button
+        *ngIf="user$ | async"
+        text="Logout"
+        type="secondary"
+        [loading]="true"
       ></app-loading-button>
     </div>
   </ul>

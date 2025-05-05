@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,22 +10,46 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   private authorizedUser = new BehaviorSubject<User | null>(null);
   private isLoading = new BehaviorSubject<boolean>(false);
+  private isLogginInLoading = new BehaviorSubject<boolean>(false);
 
-  constructor(public httpClient: HttpClient) {}
+  constructor(public httpClient: HttpClient, public router: Router) {}
 
   public async authorizeUser(): Promise<void> {
     this.isLoading.next(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       const user = await firstValueFrom(
         this.httpClient.get<User>('/api/auth/me')
       );
       this.authorizedUser.next(user);
-      this.authorizedUser.next(null);
     } catch (error: any) {
       console.log(error);
     } finally {
       this.isLoading.next(false);
+    }
+  }
+
+  public async loginUser(username: string, password: string): Promise<void> {
+    this.isLogginInLoading.next(true);
+    const headers = { 'Content-Type': 'application/json' };
+    try {
+      const response = await firstValueFrom(
+        this.httpClient.post(
+          '/api/auth/login',
+          {
+            username,
+            password,
+          },
+          { headers }
+        )
+      );
+      await this.authorizeUser();
+      this.isLogginInLoading.next(false);
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.log(error);
+      this.isLogginInLoading.next(false);
+    } finally {
+      this.isLogginInLoading.next(false);
     }
   }
 
@@ -34,5 +59,9 @@ export class AuthService {
 
   public getIsLoading = (): Observable<boolean> => {
     return this.isLoading.asObservable();
+  };
+
+  public getIsLogginInLoading = (): Observable<boolean> => {
+    return this.isLogginInLoading.asObservable();
   };
 }

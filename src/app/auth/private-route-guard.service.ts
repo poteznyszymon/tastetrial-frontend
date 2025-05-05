@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { CanActivate, Router } from '@angular/router';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class PrivateRouteGuardService implements CanActivate {
 
   async canActivate(): Promise<boolean> {
     const user = await firstValueFrom(this.auth.getCurrentUser());
+
     if (!user) {
       await this.router.navigate(['register']);
       return false;

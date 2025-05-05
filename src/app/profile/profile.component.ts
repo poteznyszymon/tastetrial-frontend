@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class ProfileComponent {
   user$;
 
-  constructor(authService: AuthService) {
+  constructor(private authService: AuthService) {
     this.user$ = authService.getCurrentUser();
   }
 }

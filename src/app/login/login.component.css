@@ -55,3 +55,68 @@ p {
     padding: 0;
   }
 }
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.8rem;
+  user-select: none;
+}
+
+input {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  width: 100%;
+}
+
+input:focus,
+input:active {
+  outline: none;
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-foreground);
+}
+
+.input-box {
+  display: flex;
+  position: relative;
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: var(--radius);
+}
+
+.button-wrapper:hover {
+  background-color: var(--primary-foreground);
+}
+
+.button-wrapper:hover lucide-angular {
+  color: var(--primary);
+}
+
+lucide-angular {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+}
+
+input.password {
+  padding-right: 2.7rem;
+}
+
+.error-message {
+  color: var(--primary);
+  font-size: 0.75rem;
+}
