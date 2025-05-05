@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   isMenuOpen = signal(false);
+  isDropdownOpen = signal(false);
 
   user$;
   isLoading$;
@@ -37,6 +38,10 @@ export class NavbarComponent {
     } else this.isMenuOpen.update((prev) => !prev);
   };
 
+  handleDropdownClick = () => {
+    this.isDropdownOpen.update((prev) => !prev);
+  };
+
   onClick = async (location: 'login' | 'register') => {
     await this.router.navigate([location]);
   };
@@ -45,9 +50,14 @@ export class NavbarComponent {
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const clickedInsideNavbar = target.closest('.navbar-container');
+    const clickedInsideAvatar = target.closest('.avatar');
 
     if (!clickedInsideNavbar && this.isMenuOpen()) {
       this.isMenuOpen.set(false);
+    }
+
+    if (!clickedInsideAvatar) {
+      this.isDropdownOpen.set(false);
     }
   }
 }

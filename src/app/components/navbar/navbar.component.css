@@ -106,6 +106,38 @@
   align-items: center;
   border: solid 1px var(--border);
   display: none;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.dropdown {
+  cursor: default;
+  font-size: 0.85rem;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  position: absolute;
+  padding: 1rem;
+  top: 3rem;
+  border-radius: var(--radius);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.dropdown > a {
+  font-size: 600;
+  cursor: pointer;
+}
+
+.dropdown > a:hover {
+  text-decoration: underline;
+}
+
+.dropdown > button {
+  cursor: pointer;
 }
 
 .loader-wrapper {

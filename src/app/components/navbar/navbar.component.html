@@ -22,9 +22,17 @@
       ></app-loading-button>
     </div>
     <ng-container *ngIf="user$ | async as user">
-      <div *ngIf="!(isLoading$ | async)" class="avatar">
+      <button
+        *ngIf="!(isLoading$ | async)"
+        class="avatar"
+        (click)="handleDropdownClick()"
+      >
         {{ user.username.slice(0, 2) }}
-      </div>
+        <div class="dropdown" *ngIf="isDropdownOpen()">
+          <a routerLink="/profile">{{ "@" + user.username }}</a>
+          <button>Logout</button>
+        </div>
+      </button>
     </ng-container>
     <div class="loader-wrapper" *ngIf="isLoading$ | async">
       <lucide-angular [img]="Loader2"></lucide-angular>
