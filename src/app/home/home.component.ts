@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../service/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../service/shared/toast.service';
 

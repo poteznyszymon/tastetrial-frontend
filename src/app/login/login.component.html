@@ -5,7 +5,12 @@
     <div class="input-wrapper">
       <label for="username">Username</label>
       <div class="input-box">
-        <input id="username" type="text" formControlName="username" />
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          autocomplete="additional-name"
+        />
       </div>
       <div *ngIf="username.invalid && username.touched">
         <p class="error-message" *ngIf="username.errors?.['required']">
@@ -20,6 +25,7 @@
           id="password"
           [type]="hideText() ? 'password' : 'text'"
           formControlName="password"
+          autocomplete="current-password"
         />
         <div
           *ngIf="hideText()"
@@ -50,10 +56,9 @@
       text="Login"
       (clicked)="handleClick()"
     ></app-loading-button>
+    <div class="login-footer">
+      <p>Don't have an account?</p>
+      <a routerLink="/register">Register</a>
+    </div>
   </form>
-  <p *ngIf="loginForm.valid"></p>
-  <div class="login-footer">
-    <p>Don't have an account?</p>
-    <a routerLink="/register">Register</a>
-  </div>
 </section>

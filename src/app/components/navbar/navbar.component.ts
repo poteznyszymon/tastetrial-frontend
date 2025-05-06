@@ -2,7 +2,7 @@ import { Component, HostListener, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LoadingButtonComponent } from '../loading-button/loading-button.component';
 import { IconButtonComponent } from '../icon-button/icon-button.component';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { Loader2, LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 

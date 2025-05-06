@@ -15,7 +15,7 @@ button.primary {
 }
 
 button.secondary {
-  background-color: var(--background);
+  background-color: var(--card);
   border: 1px solid var(--border);
 }
 

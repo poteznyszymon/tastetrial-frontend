@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  GuardResult,
-  MaybeAsync,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { firstValueFrom } from 'rxjs';
 
@@ -20,11 +13,10 @@ export class PublicRouteGuardService implements CanActivate {
     const currentUser = await firstValueFrom(this.auth.getCurrentUser());
 
     if (!currentUser) {
-      await this.auth.authorizeUser();
+      await this.auth.authorizeUser('revalidate');
     }
 
     const updatedUser = await firstValueFrom(this.auth.getCurrentUser());
-    console.log(updatedUser);
 
     if (updatedUser) {
       await this.router.navigate(['/']);

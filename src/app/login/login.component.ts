@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Lock, LockOpen, LucideAngularModule } from 'lucide-angular';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
