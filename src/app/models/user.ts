@@ -7,5 +7,9 @@ export interface User {
   lastName: string;
   profileImage: Image | null;
   coverImage: Image | null;
+  totalReviews: number;
+  totalFavorites: number;
+  averageRating: number;
+  profileDescription: string | null;
   createdAt: string;
 }

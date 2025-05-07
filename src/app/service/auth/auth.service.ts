@@ -78,10 +78,13 @@ export class AuthService {
       const respone = await firstValueFrom(
         this.httpClient.post('/api/auth/logout', {})
       );
-      this.authorizedUser.next(null);
-      if (location.pathname === '/profile') {
+      if (
+        location.pathname ===
+        `/profile/${this.authorizedUser.getValue()?.username}`
+      ) {
         await this.router.navigate(['/']);
       }
+      this.authorizedUser.next(null);
     } catch (error) {
       console.log(error);
       this.toastService.show('Something went wrong. Please try again.');

@@ -1,55 +1,82 @@
-<ng-container *ngIf="user$ | async as user">
+<ng-container *ngIf="isLoading$ | async; else content">
   <section>
-    <div class="images-wrapper">
-      <div class="cover-image-wrapper">
-        <div class="edit-cover-image-container">
-          <label for="coverImage" class="edit-cover-image-wrapper">
-            <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
-            <p>Edit cover</p>
-          </label>
-          <input id="coverImage" type="file" hidden />
-        </div>
-        <img
-          [src]="(user.coverImage?.url) ?? `https://placehold.co/1200x400`"
-          alt="user cover image"
-        />
-      </div>
-      <div class="profile-image-wrapper">
-        <img
-          *ngIf="user.profileImage?.url"
-          [src]="user.profileImage?.url"
-          alt="user profile image"
-        />
-        <div class="temp-profile-avatar" *ngIf="!user.profileImage?.url">
-          <p>{{ user.username.slice(0, 2) }}</p>
-        </div>
-        <button class="edit-profile-image-wrapper">
-          <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
-        </button>
+    <div class="skeleton-images-wrapper">
+      <div class="profile-image-skeleton-wrapper">
+        <app-skeleton customClass="profile-image-skeleton"></app-skeleton>
       </div>
     </div>
-    <div class="profile-info-container">
-      <h2>{{ user.username }}</h2>
-      <div class="joined-date-wrapper">
-        <lucide-angular size="15" [img]="Calendar"></lucide-angular>
-        <p class="joined-date">
-          Joined {{ user.createdAt | date : "longDate" }}
-        </p>
+    <div class="profile-info-skeleton">
+      <app-skeleton customClass="username-skeleton"></app-skeleton>
+      <app-skeleton customClass="date-skeleton"></app-skeleton>
+      <div class="achievements-skeleton-wrapper">
+        <app-skeleton customClass="achievement-skeleton"></app-skeleton>
+        <app-skeleton customClass="achievement-skeleton"></app-skeleton>
+        <app-skeleton customClass="achievement-skeleton"></app-skeleton>
       </div>
-      <div class="achievements-wrapper">
-        <div class="achievement-wrapper">
-          <lucide-angular size="15" [img]="Utensils"></lucide-angular>
-          <p>24 Reviews</p>
-        </div>
-        <div class="achievement-wrapper">
-          <lucide-angular size="15" [img]="Heart"></lucide-angular>
-          <p>12 Favorites</p>
-        </div>
-        <div class="achievement-wrapper">
-          <lucide-angular size="15" [img]="Award"></lucide-angular>
-          <p>Top Reviewer</p>
-        </div>
-      </div>
+      <app-skeleton customClass="description-skeleton"></app-skeleton>
+      <app-skeleton customClass="description-skeleton"></app-skeleton>
+      <app-skeleton customClass="description-skeleton"></app-skeleton>
+      <app-skeleton customClass="description-skeleton"></app-skeleton>
     </div>
   </section>
 </ng-container>
+
+<ng-template #content>
+  <ng-container *ngIf="user$ | async as user; else noUser">
+    <section>
+      <div class="images-wrapper">
+        <div class="cover-image-wrapper">
+          <div *ngIf="isOwner" class="edit-cover-image-container">
+            <label for="coverImage" class="edit-cover-image-wrapper">
+              <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
+              <p>Edit cover</p>
+            </label>
+            <input id="coverImage" type="file" hidden />
+          </div>
+          <img
+            [src]="(user.coverImage?.url) ?? `https://placehold.co/1200x400`"
+            alt="user cover image"
+          />
+        </div>
+        <div class="profile-image-wrapper">
+          <img
+            *ngIf="user.profileImage?.url"
+            [src]="user.profileImage?.url"
+            alt="user profile image"
+          />
+          <div class="temp-profile-avatar" *ngIf="!user.profileImage?.url">
+            <p>{{ user.username.slice(0, 2) }}</p>
+          </div>
+          <button *ngIf="isOwner" class="edit-profile-image-wrapper">
+            <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
+          </button>
+        </div>
+      </div>
+      <div class="profile-info-container">
+        <h2>{{ user.username }}</h2>
+        <div class="joined-date-wrapper">
+          <lucide-angular size="15" [img]="Calendar"></lucide-angular>
+          <p class="joined-date">
+            Joined {{ user.createdAt | date : "longDate" }}
+          </p>
+        </div>
+        <div class="achievements-wrapper">
+          <div class="achievement-wrapper">
+            <lucide-angular size="15" [img]="Utensils"></lucide-angular>
+            <p>{{ user.totalReviews }} Reviews</p>
+          </div>
+          <div class="achievement-wrapper">
+            <lucide-angular size="15" [img]="Heart"></lucide-angular>
+            <p>{{ user.totalFavorites }} Favorites</p>
+          </div>
+          <div class="achievement-wrapper">
+            <lucide-angular size="15" [img]="Award"></lucide-angular>
+            <p>Top Reviewer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
+
+<ng-template #noUser>user not found</ng-template>

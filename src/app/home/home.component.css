@@ -5,3 +5,8 @@ section {
   justify-content: center;
   align-items: center;
 }
+
+.custom-skeleton {
+  width: 50rem;
+  height: 10rem;
+}

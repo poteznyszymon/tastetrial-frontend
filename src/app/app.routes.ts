@@ -14,7 +14,7 @@ export const routes: Routes = [
   {
     path: 'profile/:username',
     component: ProfileComponent,
-    canActivate: [PrivateRouteGuardService],
+    //canActivate: [PrivateRouteGuardService],
   },
   {
     path: 'auth/register',

@@ -24,6 +24,7 @@ export class UsersService {
       );
       this.currentUser.next(user);
     } catch (error) {
+      this.toastService.show('Something went wrong. Please try again.');
     } finally {
       this.isLoading.next(false);
     }
