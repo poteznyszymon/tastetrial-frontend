@@ -12,17 +12,17 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'profile',
+    path: 'profile/:username',
     component: ProfileComponent,
     canActivate: [PrivateRouteGuardService],
   },
   {
-    path: 'register',
+    path: 'auth/register',
     component: RegisterComponent,
     canActivate: [PublicRouteGuardService],
   },
   {
-    path: 'login',
+    path: 'auth/login',
     component: LoginComponent,
     canActivate: [PublicRouteGuardService],
   },

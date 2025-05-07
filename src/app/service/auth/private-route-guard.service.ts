@@ -13,7 +13,7 @@ export class PrivateRouteGuardService implements CanActivate {
     const user = await firstValueFrom(this.auth.getCurrentUser());
 
     if (!user) {
-      await this.router.navigate(['register']);
+      await this.router.navigate(['auth/login']);
       return false;
     } else {
       return true;

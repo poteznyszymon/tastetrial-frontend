@@ -50,7 +50,7 @@ export class NavbarComponent {
   };
 
   onClick = async (location: 'login' | 'register') => {
-    await this.router.navigate([location]);
+    await this.router.navigate([`auth/${location}`]);
     this.isMenuOpen.set(false);
   };
 

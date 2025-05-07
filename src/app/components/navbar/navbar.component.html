@@ -3,7 +3,7 @@
     <a routerLink="/" (click)="handleMenuClick(true)"><h3>TasteTrial</h3></a>
     <div class="desktop-links">
       <a routerLink="" class="link"><p>Home</p></a>
-      <a routerLink="profile" class="link"><p>Profile</p></a>
+      <a routerLink="/profile/szymonn" class="link"><p>Profile</p></a>
       <a routerLink="Restaurants" class="link"><p>Restaurants</p></a>
     </div>
     <div
@@ -27,7 +27,12 @@
         class="avatar"
         (click)="handleDropdownClick()"
       >
-        {{ user.username.slice(0, 2) }}
+        <p *ngIf="!user.profileImage?.url">{{ user.username.slice(0, 2) }}</p>
+        <img
+          *ngIf="user.profileImage?.url"
+          [src]="user.profileImage?.url"
+          alt="profile image"
+        />
         <div class="dropdown" *ngIf="isDropdownOpen()">
           <a routerLink="/profile">{{ "@" + user.username }}</a>
           <button (click)="handleLogout()">Logout</button>

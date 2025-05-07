@@ -57,7 +57,7 @@ lucide-angular {
   padding: 0.5rem 1rem;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 550px) {
   .banner-container {
     max-width: 23rem;
     margin-left: 0rem;

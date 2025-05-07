@@ -1,0 +1,38 @@
+footer {
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0rem;
+  color: var(--muted-foreground);
+  position: relative;
+}
+
+.footer-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0rem 1rem;
+}
+
+.footer-wrapper > p {
+  font-size: 0.8rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+lucide-angular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-wrapper > a {
+  cursor: pointer;
+}
+
+.footer-wrapper > a:hover {
+  color: var(--foreground);
+}
