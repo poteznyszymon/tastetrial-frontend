@@ -1,0 +1,12 @@
+<div class="error-page-container">
+  <div class="alert-icon-wrapper">
+    <lucide-angular size="35" [img]="Alert"></lucide-angular>
+  </div>
+  <h3>{{ title }}</h3>
+  <p class="subtitle">{{ subtitle }}</p>
+  <button (click)="handleOnClick()" class="retry-button">
+    <lucide-angular size="17" [img]="RetryIcon"></lucide-angular>
+    <p>Try Again</p>
+  </button>
+  <a class="return-button" routerLink="/">Return to Home Page</a>
+</div>

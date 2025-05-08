@@ -1,25 +1,36 @@
-<ng-container *ngIf="isLoading$ | async; else content">
-  <section>
-    <div class="skeleton-images-wrapper">
-      <div class="profile-image-skeleton-wrapper">
-        <app-skeleton customClass="profile-image-skeleton"></app-skeleton>
-      </div>
-    </div>
-    <div class="profile-info-skeleton">
-      <app-skeleton customClass="username-skeleton"></app-skeleton>
-      <app-skeleton customClass="date-skeleton"></app-skeleton>
-      <div class="achievements-skeleton-wrapper">
-        <app-skeleton customClass="achievement-skeleton"></app-skeleton>
-        <app-skeleton customClass="achievement-skeleton"></app-skeleton>
-        <app-skeleton customClass="achievement-skeleton"></app-skeleton>
-      </div>
-      <app-skeleton customClass="description-skeleton"></app-skeleton>
-      <app-skeleton customClass="description-skeleton"></app-skeleton>
-      <app-skeleton customClass="description-skeleton"></app-skeleton>
-      <app-skeleton customClass="description-skeleton"></app-skeleton>
-    </div>
-  </section>
+<ng-container *ngIf="isError$ | async; else loadingOrContent">
+  <app-resource-error-page
+    title="Failed to Load Profile"
+    subtitle="There was a problem retrieving the profile data. Please check your internet connection and try again."
+    (onClick)="handleReload()"
+  ></app-resource-error-page>
 </ng-container>
+
+<ng-template #loadingOrContent>
+  <ng-container *ngIf="isLoading$ | async; else content">
+    <section>
+      <div class="skeleton-images-wrapper">
+        <app-skeleton customClass="cover-image-skeleton"></app-skeleton>
+        <div class="profile-image-skeleton-wrapper">
+          <app-skeleton customClass="profile-image-skeleton"></app-skeleton>
+        </div>
+      </div>
+      <div class="profile-info-skeleton">
+        <app-skeleton customClass="username-skeleton"></app-skeleton>
+        <app-skeleton customClass="date-skeleton"></app-skeleton>
+        <div class="achievements-skeleton-wrapper">
+          <app-skeleton customClass="achievement-skeleton"></app-skeleton>
+          <app-skeleton customClass="achievement-skeleton"></app-skeleton>
+          <app-skeleton customClass="achievement-skeleton"></app-skeleton>
+        </div>
+        <app-skeleton customClass="description-skeleton"></app-skeleton>
+        <app-skeleton customClass="description-skeleton"></app-skeleton>
+        <app-skeleton customClass="description-skeleton"></app-skeleton>
+        <app-skeleton customClass="description-skeleton"></app-skeleton>
+      </div>
+    </section>
+  </ng-container>
+</ng-template>
 
 <ng-template #content>
   <ng-container *ngIf="user$ | async as user; else noUser">
@@ -79,4 +90,6 @@
   </ng-container>
 </ng-template>
 
-<ng-template #noUser>user not found</ng-template>
+<ng-template #noUser
+  ><app-resource-not-found-page></app-resource-not-found-page
+></ng-template>

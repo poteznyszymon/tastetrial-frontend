@@ -3,7 +3,12 @@
     <a routerLink="/" (click)="handleMenuClick(true)"><h3>TasteTrial</h3></a>
     <div class="desktop-links">
       <a routerLink="" class="link"><p>Home</p></a>
-      <a routerLink="/profile/szymonn" class="link"><p>Profile</p></a>
+      <a
+        *ngIf="user$ | async as user"
+        [routerLink]="'/profile/' + user.username"
+        class="link"
+        ><p>Profile</p></a
+      >
       <a routerLink="Restaurants" class="link"><p>Restaurants</p></a>
     </div>
     <div
@@ -34,7 +39,9 @@
           alt="profile image"
         />
         <div class="dropdown" *ngIf="isDropdownOpen()">
-          <a routerLink="/profile">{{ "@" + user.username }}</a>
+          <a [routerLink]="'/profile/' + user.username">{{
+            "@" + user.username
+          }}</a>
           <button (click)="handleLogout()">Logout</button>
         </div>
       </button>
@@ -60,9 +67,11 @@
     <a routerLink="/" (click)="handleMenuClick()">
       <li class="link">Add review</li>
     </a>
-    <a routerLink="/profile" (click)="handleMenuClick()">
-      <li class="link">Profile</li>
-    </a>
+    <ng-container *ngIf="user$ | async as user">
+      <a [routerLink]="'/profile/' + user.username" (click)="handleMenuClick()">
+        <li class="link">Profile</li>
+      </a>
+    </ng-container>
     <div class="mobile-button-container">
       <app-loading-button
         *ngIf="!(user$ | async)"

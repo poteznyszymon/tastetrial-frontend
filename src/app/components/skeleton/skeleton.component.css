@@ -1,6 +1,6 @@
 .skeleton {
   background-color: #e0e0e0;
-  border-radius: 10rem;
+  border-radius: var(--radius);
   animation: pulse 1.5s infinite ease-in-out;
   display: block;
 }

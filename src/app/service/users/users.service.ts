@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 export class UsersService {
   private currentUser = new BehaviorSubject<User | null>(null);
   private isLoading = new BehaviorSubject<Boolean>(false);
+  private isError = new BehaviorSubject<Boolean>(false);
 
   constructor(
     public httpClient: HttpClient,
@@ -17,14 +18,19 @@ export class UsersService {
   ) {}
 
   public async findUserByUsername(username: string): Promise<void> {
+    this.isError.next(false);
     this.isLoading.next(true);
     try {
       const user = await firstValueFrom(
         this.httpClient.get<User>(`/api/user/${username}`)
       );
       this.currentUser.next(user);
-    } catch (error) {
-      this.toastService.show('Something went wrong. Please try again.');
+    } catch (error: any) {
+      if (error.status === 404) {
+        return;
+      }
+      console.log(error);
+      this.isError.next(true);
     } finally {
       this.isLoading.next(false);
     }
@@ -36,5 +42,9 @@ export class UsersService {
 
   public getIsLoading = (): Observable<Boolean> => {
     return this.isLoading.asObservable();
+  };
+
+  public getIsError = (): Observable<Boolean> => {
+    return this.isError.asObservable();
   };
 }
