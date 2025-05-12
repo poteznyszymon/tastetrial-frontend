@@ -1,4 +1,4 @@
-<div class="toast">
+<div [ngClass]="['toast', type]">
   {{ message }}
   <button class="icon-wrapper" (click)="onClick()">
     <lucide-angular size="18" [img]="X"></lucide-angular>

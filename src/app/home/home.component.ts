@@ -14,7 +14,10 @@ export class HomeComponent {
   isLoading$;
 
   handleClick = () => {
-    this.toastService.show('Something went wrong. Please try again.');
+    this.toastService.show(
+      'Something went wrong. Please try again.',
+      'primary'
+    );
   };
 
   constructor(

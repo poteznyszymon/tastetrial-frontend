@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 export interface ToastMessage {
   id: number;
   text: string;
+  type: 'primary' | 'destructive';
 }
 
 @Injectable({
@@ -15,9 +16,13 @@ export class ToastService {
 
   private counter = 0;
 
-  show(message: string, duration = 5000) {
+  show(
+    message: string,
+    type: 'primary' | 'destructive' = 'destructive',
+    duration = 5000
+  ) {
     const id = this.counter++;
-    const toast: ToastMessage = { id, text: message };
+    const toast: ToastMessage = { id, type, text: message };
 
     const current = this.messagesSubject.value;
     this.messagesSubject.next([...current, toast]);

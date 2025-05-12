@@ -12,6 +12,12 @@
   position: relative;
 }
 
+.toast.primary {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
 .toast:hover .icon-wrapper {
   display: flex;
 }
@@ -23,6 +29,10 @@
   right: 0.4rem;
   cursor: pointer;
   color: var(--background);
+}
+
+.toast.primary > .icon-wrapper {
+  color: var(--foreground);
 }
 
 @keyframes slide-up {

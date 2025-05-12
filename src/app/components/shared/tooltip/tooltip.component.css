@@ -1,0 +1,15 @@
+.tooltip-wrapper {
+  position: relative; /* działa, bo element jest renderowany */
+  display: inline-block; /* lub block – zależnie od kontekstu */
+}
+
+.tooltip-message {
+  position: absolute;
+  top: 100%; /* poniżej wrappera */
+  left: 0;
+  background: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}

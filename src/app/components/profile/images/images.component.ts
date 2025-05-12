@@ -11,6 +11,7 @@ import { User } from '../../../models/user';
 import { LoadingButtonComponent } from '../../loading-button/loading-button.component';
 import { UsersService } from '../../../service/users/users.service';
 import { Observable } from 'rxjs';
+import { TooltipComponent } from '../../shared/tooltip/tooltip.component';
 
 @Component({
   selector: 'app-images',

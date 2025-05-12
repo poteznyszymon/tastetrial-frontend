@@ -98,7 +98,13 @@ export class UsersService {
                 }
               }
             }),
-            finalize(() => this.isUploading.next(false)),
+            finalize(() => {
+              this.isUploading.next(false);
+              this.toastService.show(
+                `New ${type} image has been successfully uploaded`,
+                'primary'
+              );
+            }),
             last()
           )
       );
