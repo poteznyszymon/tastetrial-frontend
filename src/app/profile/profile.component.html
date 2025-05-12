@@ -35,34 +35,7 @@
 <ng-template #content>
   <ng-container *ngIf="user$ | async as user; else noUser">
     <section>
-      <div class="images-wrapper">
-        <div class="cover-image-wrapper">
-          <div *ngIf="isOwner" class="edit-cover-image-container">
-            <label for="coverImage" class="edit-cover-image-wrapper">
-              <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
-              <p>Edit cover</p>
-            </label>
-            <input id="coverImage" type="file" hidden />
-          </div>
-          <img
-            [src]="(user.coverImage?.url) ?? `https://placehold.co/1200x400`"
-            alt="user cover image"
-          />
-        </div>
-        <div class="profile-image-wrapper">
-          <img
-            *ngIf="user.profileImage?.url"
-            [src]="user.profileImage?.url"
-            alt="user profile image"
-          />
-          <div class="temp-profile-avatar" *ngIf="!user.profileImage?.url">
-            <p>{{ user.username.slice(0, 2) }}</p>
-          </div>
-          <button *ngIf="isOwner" class="edit-profile-image-wrapper">
-            <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
-          </button>
-        </div>
-      </div>
+      <app-images [user]="user" [isOwner]="isOwner"></app-images>
       <div class="profile-info-container">
         <h2>{{ user.username }}</h2>
         <div class="joined-date-wrapper">
@@ -90,6 +63,9 @@
   </ng-container>
 </ng-template>
 
-<ng-template #noUser
-  ><app-resource-not-found-page></app-resource-not-found-page
+<ng-template #noUser>
+  <app-resource-not-found-page
+    title="Profile Not Found"
+    subtitle="We couldn't find the profile you're looking for. The user with the specified ID doesn't exist in our database."
+  ></app-resource-not-found-page
 ></ng-template>

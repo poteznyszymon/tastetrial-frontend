@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SkeletonComponent } from '../components/skeleton/skeleton.component';
 import { ResourceNotFoundPageComponent } from '../components/shared/resource-not-found-page/resource-not-found-page.component';
 import { ResourceErrorPageComponent } from '../components/shared/resource-error-page/resource-error-page.component';
+import { ImagesComponent } from '../components/profile/images/images.component';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ import { ResourceErrorPageComponent } from '../components/shared/resource-error-
     SkeletonComponent,
     ResourceNotFoundPageComponent,
     ResourceErrorPageComponent,
+    ImagesComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',

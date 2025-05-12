@@ -1,0 +1,126 @@
+<div class="images-wrapper">
+  <div class="cover-image-wrapper">
+    <div *ngIf="isOwner" class="edit-cover-image-container">
+      <button
+        *ngIf="!previewUrls.cover()"
+        class="edit-cover-image-wrapper"
+        (click)="openDialog('cover')"
+      >
+        <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
+        <p>Edit cover</p>
+      </button>
+    </div>
+    <img
+      [src]="user.coverImage?.url || 'https://placehold.co/1200x400'"
+      alt="user cover image"
+    />
+  </div>
+
+  <div class="profile-image-wrapper">
+    <img
+      *ngIf="user.profileImage?.url"
+      [src]="user.profileImage?.url"
+      alt="user profile image"
+    />
+    <div class="temp-profile-avatar" *ngIf="!user.profileImage?.url">
+      <p>{{ user.username.slice(0, 2) }}</p>
+    </div>
+    <button
+      *ngIf="isOwner"
+      class="edit-profile-image-wrapper"
+      (click)="openDialog('profile')"
+    >
+      <lucide-angular size="16" [img]="SquarePen"></lucide-angular>
+    </button>
+    <input
+      id="profileImg"
+      type="file"
+      hidden
+      accept="image/*"
+      (change)="onFileSelect($event, 'profile')"
+    />
+  </div>
+</div>
+
+<div
+  *ngIf="editImageDialogOpen()"
+  class="edit-image-dialog-wrapper"
+  (click)="closeDialog()"
+>
+  <div (click)="$event.stopPropagation()" class="edit-image-dialog-container">
+    <button class="close-icon-wrapper" (click)="closeDialog()">
+      <lucide-angular size="18" [img]="X"></lucide-angular>
+    </button>
+
+    <p class="title">
+      Update {{ editImageDialogType() === "cover" ? "Cover" : "Profile" }} Image
+    </p>
+
+    <p class="subtitle">
+      Upload a new
+      {{ editImageDialogType() === "cover" ? "cover" : "profile" }} image for
+      your profile. The recommended size is
+      {{ editImageDialogType() === "cover" ? "1200x400" : "500x500" }} pixels.
+    </p>
+
+    <label
+      [htmlFor]="editImageDialogType()"
+      class="image-selector"
+      *ngIf="!($isUploading | async)"
+    >
+      <ng-container
+        *ngIf="previewUrls[editImageDialogType()!]() !== null; else showPrompt"
+      >
+        <img
+          [src]="previewUrls[editImageDialogType()!]()"
+          alt="Selected image preview"
+        />
+      </ng-container>
+
+      <ng-template #showPrompt>
+        <div class="image-selector-icon-wrapper">
+          <lucide-angular size="30" [img]="ImageIcon"></lucide-angular>
+        </div>
+        <p>Click to select an image</p>
+      </ng-template>
+    </label>
+
+    <div class="buttons-wrapper" *ngIf="!($isUploading | async)">
+      <button (click)="closeDialog()" class="secondary">Cancel</button>
+      <button
+        class="primary"
+        [disabled]="!previewUrls.cover() && !previewUrls.profile()"
+        (click)="handleImageUpload()"
+      >
+        <lucide-angular size="15" [img]="UploadIcon"></lucide-angular>
+        Upload Image
+      </button>
+    </div>
+
+    <div class="loading-container" *ngIf="$isUploading | async">
+      <div class="loading-icon-wrapper">
+        <lucide-angular [img]="UploadIcon"></lucide-angular>
+      </div>
+      <p class="title">Uploading your image...</p>
+      <p class="subtitle">
+        Please wait while we upload and process your new cover image.
+      </p>
+      <div class="loader-container">
+        <div
+          class="procentage-loader"
+          [style.width.%]="$uploadProgress | async"
+        ></div>
+      </div>
+      <p class="subtitle">{{ $uploadProgress | async }}%</p>
+    </div>
+
+    <input
+      type="file"
+      name="image-input"
+      hidden
+      [id]="editImageDialogType()"
+      (change)="onFileSelect($event, editImageDialogType()!)"
+      accept="image/*"
+    />
+  </div>
+</div>

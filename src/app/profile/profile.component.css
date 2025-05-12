@@ -4,114 +4,6 @@ section {
   flex-direction: column;
 }
 
-.images-wrapper {
-  position: relative;
-}
-
-.cover-image-wrapper {
-  width: 100%;
-  height: 20rem;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-}
-
-.cover-image-wrapper > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.1;
-}
-
-.profile-image-wrapper {
-  background-color: var(--card);
-  height: 9rem;
-  width: 9rem;
-  position: absolute;
-  left: 50%;
-  bottom: -50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  z-index: 5;
-  padding: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-image-wrapper > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: contain;
-  box-shadow: 0px 0px 0px 1px var(--primary);
-}
-
-.temp-profile-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  background-color: var(--background);
-}
-
-.edit-profile-image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  padding: 0.5rem;
-  border-radius: 40%;
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0.5rem;
-  cursor: pointer;
-}
-
-.edit-profile-image-wrapper:hover {
-  background-color: var(--background);
-}
-
-lucide-angular {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.edit-cover-image-container {
-  position: absolute;
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 50%;
-  z-index: 10;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-}
-
-.edit-cover-image-wrapper {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  background-color: var(--card);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  font-weight: 500;
-}
-
-.edit-cover-image-wrapper:hover {
-  background-color: var(--background);
-}
-
 .profile-info-container {
   height: 30rem;
   max-width: 1200px;
@@ -145,6 +37,7 @@ lucide-angular {
   user-select: none;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 1rem;
 }
 
 .achievement-wrapper {
@@ -164,14 +57,16 @@ lucide-angular {
 
 .skeleton-images-wrapper {
   width: 100%;
-  height: 20rem;
+  height: 15rem;
   position: relative;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .cover-image-skeleton {
   width: 100%;
-  height: 20rem;
-  border-radius: 0%;
+  height: 15rem;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
 }
 
 .profile-image-skeleton-wrapper {
@@ -184,7 +79,7 @@ lucide-angular {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 30%);
 }
 
 .profile-image-skeleton {

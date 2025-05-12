@@ -38,6 +38,10 @@ h3 {
   font-size: 1.5rem;
 }
 
+h4 {
+  font-size: 1.3rem;
+}
+
 /* --- Tablet --- */
 @media (max-width: 1024px) {
   h1 {
@@ -48,6 +52,9 @@ h3 {
   }
   h3 {
     font-size: 1.4rem;
+  }
+  h4 {
+    font-size: 1.25rem;
   }
 }
 
@@ -62,6 +69,15 @@ h3 {
   h3 {
     font-size: 1.25rem;
   }
+  h4 {
+    font-size: 1.1rem;
+  }
+}
+
+lucide-angular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 :root {
