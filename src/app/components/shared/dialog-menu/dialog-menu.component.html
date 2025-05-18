@@ -1,0 +1,33 @@
+<button class="button" (click)="handleOpen()">{{ openButtonText }}</button>
+<div *ngIf="isOpen()" class="menu-wrapper" (click)="handleClose()">
+  <div (click)="$event.stopPropagation()" class="menu-container">
+    <button class="close-icon-wrapper" (click)="handleClose()">
+      <lucide-angular size="18" [img]="X"></lucide-angular>
+    </button>
+    <div class="text">
+      <h4>{{ title }}</h4>
+      <p>{{ subTitle }}</p>
+    </div>
+    <ng-content></ng-content>
+
+    <div class="buttons">
+      <button class="secondary" (click)="handleClose()" [disabled]="loading">
+        <p>Cancel</p>
+      </button>
+      <button
+        class="primary"
+        (click)="handleButtonClick()"
+        [disabled]="loading"
+      >
+        <p>Save Changes</p>
+        <div class="loader-wrapper" *ngIf="loading">
+          <lucide-angular
+            class="loader"
+            size="19"
+            [img]="LoaderIcon"
+          ></lucide-angular>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

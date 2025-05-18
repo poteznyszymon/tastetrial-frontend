@@ -1,0 +1,45 @@
+.edit-button {
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.edit-button:hover {
+  opacity: 0.9;
+}
+
+.edit-menu-wrapper {
+  z-index: 999;
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-menu-container {
+  background-color: var(--background);
+  height: 20rem;
+  width: 100%;
+  max-width: 25rem;
+  animation: fadeInScale 0.1s ease-out;
+
+  border-radius: var(--radius);
+  border: solid 1px var(--border);
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

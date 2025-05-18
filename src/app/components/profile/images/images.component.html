@@ -2,7 +2,7 @@
   <div class="cover-image-wrapper">
     <div *ngIf="isOwner" class="edit-cover-image-container">
       <button
-        *ngIf="!previewUrls.cover()"
+        *ngIf="isOwner"
         class="edit-cover-image-wrapper"
         (click)="openDialog('cover')"
       >
@@ -15,7 +15,6 @@
       alt="user cover image"
     />
   </div>
-
   <div class="profile-image-wrapper">
     <img
       *ngIf="user.profileImage?.url"

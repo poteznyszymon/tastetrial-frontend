@@ -37,12 +37,14 @@
     <section>
       <app-images [user]="user" [isOwner]="isOwner"></app-images>
       <div class="profile-info-container">
-        <h2>{{ user.username }}</h2>
-        <div class="joined-date-wrapper">
-          <lucide-angular size="15" [img]="Calendar"></lucide-angular>
-          <p class="joined-date">
-            Joined {{ user.createdAt | date : "longDate" }}
-          </p>
+        <div class="profile-info-subinfo">
+          <h2>{{ user.username }}</h2>
+          <div class="joined-date-wrapper">
+            <lucide-angular size="15" [img]="Calendar"></lucide-angular>
+            <p class="joined-date">
+              Joined {{ user.createdAt | date : "longDate" }}
+            </p>
+          </div>
         </div>
         <div class="achievements-wrapper">
           <div class="achievement-wrapper">
@@ -57,6 +59,25 @@
             <lucide-angular size="15" [img]="Award"></lucide-angular>
             <p>Top Reviewer</p>
           </div>
+        </div>
+        <div *ngIf="user.profileDescription" class="description-wrapper">
+          <p>{{ user.profileDescription }}</p>
+          <ng-container *ngIf="isOwner">
+            <app-dialog-menu
+              openButtonText="Edit description"
+              title="Edit Profile Description"
+              subTitle="Update your profile description to tell others about yourself."
+              (onClick)="handleDescriptionSave()"
+            >
+              <textarea
+                [value]="descriptionValue()"
+                (input)="handleChange($event)"
+                placeholder="Write something about yourself..."
+                spellcheck="false"
+                maxlength="200"
+              ></textarea>
+            </app-dialog-menu>
+          </ng-container>
         </div>
       </div>
     </section>

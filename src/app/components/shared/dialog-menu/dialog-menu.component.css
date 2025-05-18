@@ -1,0 +1,142 @@
+.button {
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.menu-wrapper {
+  z-index: 999;
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-container {
+  position: relative;
+  background-color: var(--card);
+  width: 100%;
+  max-width: 25rem;
+  animation: fadeInScale 0.1s ease-out;
+  border-radius: var(--radius);
+  border: solid 1px var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  text-align: start;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.text > h4 {
+  color: var(--foreground);
+}
+
+.text > p {
+  font-size: 0.8rem;
+}
+
+.close-icon-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  color: var(--muted-foreground);
+}
+
+.close-icon-wrapper:hover {
+  color: var(--foreground);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons > button {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.secondary {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+.secondary:hover {
+  background-color: var(--muted);
+}
+
+.primary {
+  background-color: var(--foreground);
+  color: var(--card);
+  position: relative;
+}
+
+.loader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader {
+  animation: 1s linear infinite spin;
+}
+.primary:hover {
+  opacity: 0.9;
+}
+
+.secondary:disabled:hover {
+  cursor: not-allowed;
+}
+
+.primary:disabled:hover {
+  cursor: not-allowed;
+}
+
+.primary:disabled > p {
+  opacity: 0;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

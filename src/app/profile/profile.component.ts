@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import {
@@ -15,6 +15,7 @@ import { SkeletonComponent } from '../components/skeleton/skeleton.component';
 import { ResourceNotFoundPageComponent } from '../components/shared/resource-not-found-page/resource-not-found-page.component';
 import { ResourceErrorPageComponent } from '../components/shared/resource-error-page/resource-error-page.component';
 import { ImagesComponent } from '../components/profile/images/images.component';
+import { DialogMenuComponent } from '../components/shared/dialog-menu/dialog-menu.component';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +26,7 @@ import { ImagesComponent } from '../components/profile/images/images.component';
     ResourceNotFoundPageComponent,
     ResourceErrorPageComponent,
     ImagesComponent,
+    DialogMenuComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
@@ -35,6 +37,7 @@ export class ProfileComponent {
   isError$;
 
   isOwner = false;
+  descriptionValue = signal<string | null>(null);
 
   constructor(
     public userService: UsersService,
@@ -53,12 +56,20 @@ export class ProfileComponent {
   Award = Award;
   Heart = Heart;
 
+  handleDescriptionSave() {
+    alert(this.descriptionValue());
+  }
+
+  handleChange(event: Event): void {
+    const target = event.target as HTMLTextAreaElement;
+    this.descriptionValue.set(target.value);
+  }
+
   handleReload = () => {
     this.route.paramMap.subscribe((param) => {
       const username = param.get('username');
       if (username) {
         this.userService.findUserByUsername(username);
-
         this.authService.getCurrentUser().subscribe((authUser) => {
           this.isOwner = authUser?.username === username;
         });
@@ -75,6 +86,12 @@ export class ProfileComponent {
         this.authService.getCurrentUser().subscribe((authUser) => {
           this.isOwner = authUser?.username === username;
         });
+      }
+    });
+
+    this.user$.subscribe((user) => {
+      if (user) {
+        this.descriptionValue.set(user.profileDescription);
       }
     });
   }
