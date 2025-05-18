@@ -35,6 +35,7 @@ export class ProfileComponent {
   user$;
   isLoading$;
   isError$;
+  isDescriptionChanging$;
 
   isOwner = false;
   descriptionValue = signal<string | null>(null);
@@ -47,6 +48,7 @@ export class ProfileComponent {
     this.user$ = userService.getUser();
     this.isLoading$ = userService.getIsLoading();
     this.isError$ = userService.getIsError();
+    this.isDescriptionChanging$ = userService.getIsDescriptionUploading();
   }
 
   /// Icons
@@ -56,13 +58,20 @@ export class ProfileComponent {
   Award = Award;
   Heart = Heart;
 
-  handleDescriptionSave() {
-    alert(this.descriptionValue());
+  async handleDescriptionSave(): Promise<void> {
+    const description = this.descriptionValue();
+    if (description) {
+      await this.userService.changeDescription(description);
+    }
   }
 
   handleChange(event: Event): void {
     const target = event.target as HTMLTextAreaElement;
     this.descriptionValue.set(target.value);
+  }
+
+  handleReset() {
+    this.setInitialDescription();
   }
 
   handleReload = () => {
@@ -77,6 +86,14 @@ export class ProfileComponent {
     });
   };
 
+  setInitialDescription() {
+    this.user$.subscribe((user) => {
+      if (user) {
+        this.descriptionValue.set(user.profileDescription);
+      }
+    });
+  }
+
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe((param) => {
       const username = param.get('username');
@@ -88,11 +105,6 @@ export class ProfileComponent {
         });
       }
     });
-
-    this.user$.subscribe((user) => {
-      if (user) {
-        this.descriptionValue.set(user.profileDescription);
-      }
-    });
+    this.setInitialDescription();
   }
 }

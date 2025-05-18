@@ -14,7 +14,8 @@ export class DialogMenuComponent {
   @Input() subTitle = 'subtitle';
   @Input() loading = false;
 
-  @Output() onClick = new EventEmitter<void>();
+  @Input() action: () => Promise<void> = async () => {};
+  @Output() onClose = new EventEmitter<void>();
 
   isOpen = signal(false);
 
@@ -25,11 +26,13 @@ export class DialogMenuComponent {
   handleClose() {
     if (!this.loading) {
       this.isOpen.set(false);
+      this.onClose.emit();
     } else return;
   }
 
-  handleButtonClick() {
-    this.onClick.emit();
+  async handleButtonClick() {
+    await this.action();
+    this.isOpen.set(false);
   }
 
   /// Icons

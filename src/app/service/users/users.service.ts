@@ -27,6 +27,9 @@ export class UsersService {
   private isUploading = new BehaviorSubject<boolean>(false);
   private uploadError = new BehaviorSubject<boolean>(false);
 
+  /// description
+  private isDescriptionLoading = new BehaviorSubject<boolean>(false);
+
   constructor(
     public httpClient: HttpClient,
     public toastService: ToastService,
@@ -114,6 +117,27 @@ export class UsersService {
     }
   }
 
+  public async changeDescription(description: string): Promise<void> {
+    this.isDescriptionLoading.next(true);
+    try {
+      const response = this.httpClient.post<User>('/api/user', {
+        profileDescription: description,
+      });
+      const current = this.currentUser.getValue();
+      if (current) {
+        const updatedUser: User = {
+          ...current,
+          profileDescription: (await firstValueFrom(response))
+            .profileDescription,
+        };
+        this.currentUser.next(updatedUser);
+      }
+    } catch (error) {
+    } finally {
+      this.isDescriptionLoading.next(false);
+    }
+  }
+
   public getUser = (): Observable<User | null> => {
     return this.currentUser.asObservable();
   };
@@ -134,4 +158,7 @@ export class UsersService {
 
   public getUploadError = (): Observable<boolean> =>
     this.uploadError.asObservable();
+
+  public getIsDescriptionUploading = (): Observable<boolean> =>
+    this.isDescriptionLoading;
 }

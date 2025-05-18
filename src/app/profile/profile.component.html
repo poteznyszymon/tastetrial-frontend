@@ -67,7 +67,9 @@
               openButtonText="Edit description"
               title="Edit Profile Description"
               subTitle="Update your profile description to tell others about yourself."
-              (onClick)="handleDescriptionSave()"
+              [action]="handleDescriptionSave.bind(this)"
+              (onClose)="handleReset()"
+              [loading]="(isDescriptionChanging$ | async) ?? false"
             >
               <textarea
                 [value]="descriptionValue()"
