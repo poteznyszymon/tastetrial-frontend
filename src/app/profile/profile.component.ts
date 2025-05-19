@@ -8,6 +8,7 @@ import {
   LucideAngularModule,
   SquarePen,
   Utensils,
+  X,
 } from 'lucide-angular';
 import { UsersService } from '../service/users/users.service';
 import { ActivatedRoute } from '@angular/router';
@@ -16,6 +17,7 @@ import { ResourceNotFoundPageComponent } from '../components/shared/resource-not
 import { ResourceErrorPageComponent } from '../components/shared/resource-error-page/resource-error-page.component';
 import { ImagesComponent } from '../components/profile/images/images.component';
 import { DialogMenuComponent } from '../components/shared/dialog-menu/dialog-menu.component';
+import { TilesComponent } from '../components/profile/tiles/tiles.component';
 
 @Component({
   selector: 'app-profile',
@@ -27,6 +29,7 @@ import { DialogMenuComponent } from '../components/shared/dialog-menu/dialog-men
     ResourceErrorPageComponent,
     ImagesComponent,
     DialogMenuComponent,
+    TilesComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
@@ -57,6 +60,7 @@ export class ProfileComponent {
   Utensils = Utensils;
   Award = Award;
   Heart = Heart;
+  X = X;
 
   async handleDescriptionSave(): Promise<void> {
     const description = this.descriptionValue();

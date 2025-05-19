@@ -132,6 +132,12 @@ lucide-angular {
   --not-found-primary: rgb(179, 112, 58);
   --not-found-secondary: rgb(232, 158, 34);
   --not-found-background: rgb(254, 243, 198);
+
+  --success-primary: rgb(57, 180, 136);
+  --success-background: rgb(206, 250, 227);
+
+  --purple-primary: rgb(167, 113, 213);
+  --purple-background: rgb(239, 233, 254);
 }
 
 /* Dark mode */

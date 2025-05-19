@@ -1,0 +1,30 @@
+<div class="tiles-wrapper">
+  <div class="tile">
+    <div class="icon-wrapper red">
+      <lucide-angular [img]="Heart"></lucide-angular>
+    </div>
+    <p class="title">156</p>
+    <p class="subtitle">Helpful Votes</p>
+  </div>
+  <div class="tile">
+    <div class="icon-wrapper yellow">
+      <lucide-angular [img]="Utensils"></lucide-angular>
+    </div>
+    <p class="title">{{ user?.averageRating?.toPrecision(2) }}</p>
+    <p class="subtitle">Average Rating</p>
+  </div>
+  <div class="tile">
+    <div class="icon-wrapper green">
+      <lucide-angular [img]="Medal"></lucide-angular>
+    </div>
+    <p class="title">{{ user?.totalReviews }}</p>
+    <p class="subtitle">Total Reviews</p>
+  </div>
+  <div class="tile">
+    <div class="icon-wrapper purple">
+      <lucide-angular [img]="Clock"></lucide-angular>
+    </div>
+    <p class="title">{{ activeSince }}</p>
+    <p class="subtitle">Months Active</p>
+  </div>
+</div>

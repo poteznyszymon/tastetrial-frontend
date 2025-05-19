@@ -18,11 +18,6 @@
       <div class="profile-info-skeleton">
         <app-skeleton customClass="username-skeleton"></app-skeleton>
         <app-skeleton customClass="date-skeleton"></app-skeleton>
-        <div class="achievements-skeleton-wrapper">
-          <app-skeleton customClass="achievement-skeleton"></app-skeleton>
-          <app-skeleton customClass="achievement-skeleton"></app-skeleton>
-          <app-skeleton customClass="achievement-skeleton"></app-skeleton>
-        </div>
         <app-skeleton customClass="description-skeleton"></app-skeleton>
         <app-skeleton customClass="description-skeleton"></app-skeleton>
         <app-skeleton customClass="description-skeleton"></app-skeleton>
@@ -46,42 +41,36 @@
             </p>
           </div>
         </div>
-        <div class="achievements-wrapper">
-          <div class="achievement-wrapper">
-            <lucide-angular size="15" [img]="Utensils"></lucide-angular>
-            <p>{{ user.totalReviews }} Reviews</p>
-          </div>
-          <div class="achievement-wrapper">
-            <lucide-angular size="15" [img]="Heart"></lucide-angular>
-            <p>{{ user.totalFavorites }} Favorites</p>
-          </div>
-          <div class="achievement-wrapper">
-            <lucide-angular size="15" [img]="Award"></lucide-angular>
-            <p>Top Reviewer</p>
-          </div>
-        </div>
+
         <div *ngIf="user.profileDescription" class="description-wrapper">
           <p>{{ user.profileDescription }}</p>
-          <ng-container *ngIf="isOwner">
-            <app-dialog-menu
-              openButtonText="Edit description"
-              title="Edit Profile Description"
-              subTitle="Update your profile description to tell others about yourself."
-              [action]="handleDescriptionSave.bind(this)"
-              (onClose)="handleReset()"
-              [loading]="(isDescriptionChanging$ | async) ?? false"
-            >
+        </div>
+        <ng-container *ngIf="isOwner">
+          <app-dialog-menu
+            openButtonText="Edit Description"
+            title="Edit Profile Description"
+            subTitle="Update your profile description to tell others about yourself."
+            [action]="handleDescriptionSave.bind(this)"
+            (onClose)="handleReset()"
+            [loading]="(isDescriptionChanging$ | async) ?? false"
+          >
+            <div class="textarea-wrapper">
               <textarea
                 [value]="descriptionValue()"
                 (input)="handleChange($event)"
                 placeholder="Write something about yourself..."
                 spellcheck="false"
-                maxlength="200"
+                maxlength="250"
               ></textarea>
-            </app-dialog-menu>
-          </ng-container>
-        </div>
+              <p class="counter">{{ descriptionValue()?.length }}/250</p>
+              <button class="close-wrapper" (click)="descriptionValue.set('')">
+                <lucide-angular [img]="X" size="17"></lucide-angular>
+              </button>
+            </div>
+          </app-dialog-menu>
+        </ng-container>
       </div>
+      <app-tiles [user]="user$ | async"></app-tiles>
     </section>
   </ng-container>
 </ng-template>

@@ -1,7 +1,7 @@
 <div class="navbar-container">
   <div class="navbar-inner-container">
     <a routerLink="/" (click)="handleMenuClick(true)"><h3>TasteTrial</h3></a>
-    <div class="desktop-links">
+    <div class="desktop-links" *ngIf="!(isLoading$ | async)">
       <a routerLink="" class="link"><p>Home</p></a>
       <a
         *ngIf="user$ | async as user"
