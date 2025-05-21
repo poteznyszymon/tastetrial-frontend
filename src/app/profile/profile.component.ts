@@ -18,6 +18,7 @@ import { ResourceErrorPageComponent } from '../components/shared/resource-error-
 import { ImagesComponent } from '../components/profile/images/images.component';
 import { DialogMenuComponent } from '../components/shared/dialog-menu/dialog-menu.component';
 import { TilesComponent } from '../components/profile/tiles/tiles.component';
+import { ReviewsSectionComponent } from '../components/profile/reviews-section/reviews-section.component';
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +31,7 @@ import { TilesComponent } from '../components/profile/tiles/tiles.component';
     ImagesComponent,
     DialogMenuComponent,
     TilesComponent,
+    ReviewsSectionComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',

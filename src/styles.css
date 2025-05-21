@@ -138,6 +138,8 @@ lucide-angular {
 
   --purple-primary: rgb(167, 113, 213);
   --purple-background: rgb(239, 233, 254);
+
+  --gold-star: rgb(250, 205, 20);
 }
 
 /* Dark mode */

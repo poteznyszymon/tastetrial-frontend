@@ -1,0 +1,138 @@
+.container {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  min-height: 12rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  flex: 2;
+  background-color: var(--muted);
+  position: relative;
+}
+
+.cusisine {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background-color: var(--card);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  user-select: none;
+}
+
+.content-wrapper {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.image-wrapper > img {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+}
+
+.empty {
+  color: var(--border);
+}
+
+.filled {
+  color: var(--gold-star);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.title > span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.title > p {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.content-text {
+  font-size: 0.9rem;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.left-buttons > button {
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+}
+
+.left-buttons > button:hover {
+  background-color: var(--muted);
+}
+
+.bottom > a {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  background-color: var(--card);
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  gap: 0.3rem;
+}
+
+.bottom > a:hover {
+  background-color: var(--muted);
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .image-wrapper {
+    min-height: 10rem;
+    flex: 1;
+  }
+
+  .content-wrapper {
+    flex: 1;
+  }
+}

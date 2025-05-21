@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="image-wrapper">
+    <div class="cusisine">
+      {{
+        review?.restaurant?.cuisineType?.charAt(0)?.toUpperCase() +
+          review?.restaurant?.cuisineType?.slice(1)!.toLowerCase()
+      }}
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="header">
+      <div class="title">
+        <span>{{ review?.restaurant?.name }}</span>
+        <p>{{ review?.createdAt | date : "longDate" }}</p>
+      </div>
+      <div class="stars">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+          <lucide-angular
+            size="19"
+            [img]="Star"
+            [ngClass]="{
+              filled: star <= review!.rating,
+              empty: star > review!.rating
+            }"
+          >
+          </lucide-angular>
+        </ng-container>
+      </div>
+    </div>
+    <div class="content-text">
+      <p>{{ review?.content }}</p>
+    </div>
+    <div class="bottom">
+      <div class="left-buttons">
+        <button>
+          <lucide-angular size="15" [img]="Heart"></lucide-angular>
+          <p>Helpful (24)</p>
+        </button>
+        <button>
+          <lucide-angular size="15" [img]="Edit"></lucide-angular>
+          <p>Edit</p>
+        </button>
+      </div>
+      <a>View Restaurant</a>
+    </div>
+  </div>
+</div>

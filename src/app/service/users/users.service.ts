@@ -132,7 +132,12 @@ export class UsersService {
         };
         this.currentUser.next(updatedUser);
       }
+      this.toastService.show('Description has been successfully changed.');
     } catch (error) {
+      this.toastService.show(
+        'Something went wrong, please try again,',
+        'destructive'
+      );
     } finally {
       this.isDescriptionLoading.next(false);
     }

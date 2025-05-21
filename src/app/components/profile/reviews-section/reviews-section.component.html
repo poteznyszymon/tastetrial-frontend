@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="header">
+    <h3>Recent Reviews</h3>
+    <a class="button" routerLink="/"
+      ><span>View All</span>
+      <lucide-angular size="16" [img]="Arrow"></lucide-angular
+    ></a>
+  </div>
+  <div class="content">
+    <ng-container *ngIf="isError$ | async; else notError"> error </ng-container>
+
+    <ng-template #notError>
+      <ng-container *ngIf="isLoading$ | async; else content">
+        loading
+      </ng-container>
+    </ng-template>
+
+    <ng-template #content>
+      <ng-container *ngFor="let review of reviews$ | async">
+        <app-review-component [review]="review"></app-review-component>
+      </ng-container>
+    </ng-template>
+  </div>
+</div>
