@@ -19,7 +19,7 @@ export class RecentReviewsService {
       const reviews = await firstValueFrom(
         this.httpClient.get<Review[]>(`/api/review/${username}/recent`)
       );
-      this.reviews.next(reviews.reverse());
+      this.reviews.next(reviews);
     } catch (error) {
       this.isError.next(true);
     } finally {

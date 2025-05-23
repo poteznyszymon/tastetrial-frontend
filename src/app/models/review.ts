@@ -11,4 +11,6 @@ export interface Review {
   images: Image[];
   createdBy: User;
   restaurant: Restaurant;
+  totalHelpfulVotes: number;
+  votedHelpfulByCurrentUser: boolean;
 }

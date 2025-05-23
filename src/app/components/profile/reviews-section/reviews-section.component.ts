@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ChevronLeft, ChevronRight, LucideAngularModule } from 'lucide-angular';
 import { RecentReviewsService } from '../../../service/reviews/recent-reviews.service';
@@ -17,6 +17,8 @@ import { ReviewComponentComponent } from '../../shared/review-component/review-c
   styleUrl: './reviews-section.component.css',
 })
 export class ReviewsSectionComponent {
+  @Input() isOwner = false;
+
   reviews$;
   isLoading$;
   isError$;

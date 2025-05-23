@@ -17,7 +17,10 @@
 
     <ng-template #content>
       <ng-container *ngFor="let review of reviews$ | async">
-        <app-review-component [review]="review"></app-review-component>
+        <app-review-component
+          [review]="review"
+          [isOwner]="isOwner"
+        ></app-review-component>
       </ng-container>
     </ng-template>
   </div>

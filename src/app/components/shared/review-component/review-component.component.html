@@ -32,16 +32,21 @@
     </div>
     <div class="bottom">
       <div class="left-buttons">
-        <button>
+        <button
+          [ngClass]="{
+            helpful: review?.votedHelpfulByCurrentUser,
+            unhelpful: !review?.votedHelpfulByCurrentUser
+          }"
+        >
           <lucide-angular size="15" [img]="Heart"></lucide-angular>
-          <p>Helpful (24)</p>
+          <p>Helpful ({{ review?.totalHelpfulVotes }})</p>
         </button>
-        <button>
+        <button *ngIf="isOwner">
           <lucide-angular size="15" [img]="Edit"></lucide-angular>
           <p>Edit</p>
         </button>
       </div>
-      <a>View Restaurant</a>
+      <a>Restaurant<lucide-angular size="16" [img]="Arrow"></lucide-angular></a>
     </div>
   </div>
 </div>
