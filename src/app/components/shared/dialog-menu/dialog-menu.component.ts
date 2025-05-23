@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { Loader2, LucideAngularModule, X } from 'lucide-angular';
+import { Loader2, LucideAngularModule, SquarePen, X } from 'lucide-angular';
 
 @Component({
   selector: 'app-dialog-menu',
@@ -13,6 +13,8 @@ export class DialogMenuComponent {
   @Input() title = 'title';
   @Input() subTitle = 'subtitle';
   @Input() loading = false;
+  @Input() type: 'primary' | 'secondary' = 'primary';
+  @Input() showEditIcon = true;
 
   @Input() action: () => Promise<void> = async () => {};
   @Output() onClose = new EventEmitter<void>();
@@ -38,4 +40,5 @@ export class DialogMenuComponent {
   /// Icons
   X = X;
   LoaderIcon = Loader2;
+  Edit = SquarePen;
 }

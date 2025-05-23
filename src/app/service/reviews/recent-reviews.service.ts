@@ -27,6 +27,25 @@ export class RecentReviewsService {
     }
   }
 
+  public updateHelpfulStatus(reviewId: number, helpful: boolean) {
+    const currentReviews = this.reviews.getValue();
+    if (!currentReviews) return;
+
+    const updatedReviews = currentReviews.map((review) => {
+      if (review.id === reviewId) {
+        return {
+          ...review,
+          votedHelpfulByCurrentUser: helpful,
+          totalHelpfulVotes: helpful
+            ? review.totalHelpfulVotes + 1
+            : Math.max(0, review.totalHelpfulVotes - 1),
+        };
+      }
+      return review;
+    });
+    this.reviews.next(updatedReviews);
+  }
+
   public getRecentReview = (): Observable<Review[] | null> => {
     return this.reviews.asObservable();
   };

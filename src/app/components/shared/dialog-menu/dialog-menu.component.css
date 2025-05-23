@@ -1,11 +1,27 @@
 .button {
-  background-color: var(--foreground);
-  color: var(--background);
-  padding: 0.8rem 1rem;
   border-radius: var(--radius);
   font-weight: 500;
   cursor: pointer;
   font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button.primary {
+  padding: 0.7rem 0.8rem;
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+.button.secondary {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  background-color: var(--card);
+  color: var(--foreground);
+  border: none;
 }
 
 .button:hover {
@@ -48,6 +64,7 @@
 }
 
 .text > p {
+  color: var(--muted-foreground);
   font-size: 0.8rem;
 }
 
@@ -70,13 +87,15 @@
 }
 
 .buttons > button {
-  padding: 0.7rem 1rem;
+  padding: 0.6rem 0.8rem;
   cursor: pointer;
   border-radius: var(--radius);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 500;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 

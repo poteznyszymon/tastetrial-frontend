@@ -1,4 +1,7 @@
-<button class="button" (click)="handleOpen()">{{ openButtonText }}</button>
+<button class="button" [ngClass]="type" (click)="handleOpen()">
+  <lucide-angular *ngIf="showEditIcon" [img]="Edit" size="15"></lucide-angular>
+  <p>{{ openButtonText }}</p>
+</button>
 <div *ngIf="isOpen()" class="menu-wrapper" (click)="handleClose()">
   <div (click)="$event.stopPropagation()" class="menu-container">
     <button class="close-icon-wrapper" (click)="handleClose()">
@@ -9,7 +12,6 @@
       <p>{{ subTitle }}</p>
     </div>
     <ng-content></ng-content>
-
     <div class="buttons">
       <button class="secondary" (click)="handleClose()" [disabled]="loading">
         <p>Cancel</p>

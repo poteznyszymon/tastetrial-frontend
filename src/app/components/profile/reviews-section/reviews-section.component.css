@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   background-color: var(--card);
-  padding: 0.7rem 1rem;
+  padding: 0.6rem 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   gap: 0.3rem;

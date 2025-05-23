@@ -1,5 +1,9 @@
 <div class="container">
   <div class="image-wrapper">
+    <img
+      [src]="review?.images?.[0]?.url || 'https://placehold.co/1200x800'"
+      alt=""
+    />
     <div class="cusisine">
       {{
         review?.restaurant?.cuisineType?.charAt(0)?.toUpperCase() +
@@ -10,7 +14,8 @@
   <div class="content-wrapper">
     <div class="header">
       <div class="title">
-        <span>{{ review?.restaurant?.name }}</span>
+        <a routerLink="/">{{ review?.restaurant?.name }}</a>
+        <span></span>
         <p>{{ review?.createdAt | date : "longDate" }}</p>
       </div>
       <div class="stars">
@@ -33,20 +38,33 @@
     <div class="bottom">
       <div class="left-buttons">
         <button
+          [disabled]="isHelpfulToggleLoading$ | async"
+          (click)="
+            toggleHelpfulVote(
+              review?.id || -1,
+              !review?.votedHelpfulByCurrentUser || false
+            )
+          "
           [ngClass]="{
             helpful: review?.votedHelpfulByCurrentUser,
-            unhelpful: !review?.votedHelpfulByCurrentUser
+            unhelpful: !review?.votedHelpfulByCurrentUser,
           }"
         >
           <lucide-angular size="15" [img]="Heart"></lucide-angular>
-          <p>Helpful ({{ review?.totalHelpfulVotes }})</p>
+          <p class="helpful-info">Helpful ({{ review?.totalHelpfulVotes }})</p>
         </button>
-        <button *ngIf="isOwner">
-          <lucide-angular size="15" [img]="Edit"></lucide-angular>
-          <p>Edit</p>
-        </button>
+        <app-dialog-menu
+          *ngIf="isOwner"
+          openButtonText="Edit"
+          type="secondary"
+          title="Edit Review"
+          subTitle="Update your review for Trattoria Italiana. Your honest feedback helps others make better dining choices."
+          >xd
+        </app-dialog-menu>
       </div>
-      <a>Restaurant<lucide-angular size="16" [img]="Arrow"></lucide-angular></a>
+      <a routerLink="/"
+        >Restaurant<lucide-angular size="16" [img]="Arrow"></lucide-angular
+      ></a>
     </div>
   </div>
 </div>
