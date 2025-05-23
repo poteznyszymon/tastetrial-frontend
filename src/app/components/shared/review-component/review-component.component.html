@@ -38,7 +38,7 @@
     <div class="bottom">
       <div class="left-buttons">
         <button
-          [disabled]="isHelpfulToggleLoading$ | async"
+          [disabled]="helpfulService.getIsLoading(review?.id || -1) | async"
           (click)="
             toggleHelpfulVote(
               review?.id || -1,

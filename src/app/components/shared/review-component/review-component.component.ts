@@ -22,10 +22,10 @@ export class ReviewComponentComponent {
   @Input() review: Review | null = null;
   @Input() isOwner = false;
 
-  isHelpfulToggleLoading$;
+  //isHelpfulToggleLoading$;
 
   constructor(public helpfulService: HelpfulService) {
-    this.isHelpfulToggleLoading$ = this.helpfulService.getIsLoading();
+    //this.isHelpfulToggleLoading$ = this.helpfulService.getIsLoading();
   }
 
   toggleHelpfulVote(reviewId: number, isHelpful: boolean) {
