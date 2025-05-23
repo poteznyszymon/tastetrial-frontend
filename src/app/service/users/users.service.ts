@@ -143,6 +143,23 @@ export class UsersService {
     }
   }
 
+  public handleChangeHelpfulReviews(
+    username: string,
+    action: 'add' | 'subtract'
+  ) {
+    const user = this.currentUser.getValue();
+    if (!user || user.username !== username) return;
+
+    const updatedUser: User = {
+      ...user,
+      totalHelpfulReviews:
+        action === 'add'
+          ? user.totalHelpfulReviews + 1
+          : Math.max(0, user.totalHelpfulReviews - 1),
+    };
+    this.currentUser.next(updatedUser);
+  }
+
   public getUser = (): Observable<User | null> => {
     return this.currentUser.asObservable();
   };

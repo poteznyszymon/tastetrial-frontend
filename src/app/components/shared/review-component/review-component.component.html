@@ -41,7 +41,7 @@
           [disabled]="helpfulService.getIsLoading(review?.id || -1) | async"
           (click)="
             toggleHelpfulVote(
-              review?.id || -1,
+              review!,
               !review?.votedHelpfulByCurrentUser || false
             )
           "

@@ -28,8 +28,8 @@ export class ReviewComponentComponent {
     //this.isHelpfulToggleLoading$ = this.helpfulService.getIsLoading();
   }
 
-  toggleHelpfulVote(reviewId: number, isHelpful: boolean) {
-    this.helpfulService.toggleHelpfulVote(reviewId, isHelpful);
+  toggleHelpfulVote(review: Review, isHelpful: boolean) {
+    this.helpfulService.toggleHelpfulVote(review, isHelpful);
   }
 
   /// Icons

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import { RecentReviewsService } from './recent-reviews.service';
+import { Review } from '../../models/review';
+import { UsersService } from '../users/users.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +14,31 @@ export class HelpfulService {
 
   constructor(
     public httpClient: HttpClient,
-    public recentReviews: RecentReviewsService
+    public recentReviews: RecentReviewsService,
+    public userService: UsersService
   ) {}
 
-  public async toggleHelpfulVote(reviewId: number, isHelpful: boolean) {
+  public async toggleHelpfulVote(review: Review, isHelpful: boolean) {
     console.log(isHelpful);
-    this.setLoading(reviewId, true);
+    this.setLoading(review.id, true);
     try {
-      this.recentReviews.updateHelpfulStatus(reviewId, isHelpful);
+      this.recentReviews.updateHelpfulStatus(review.id, isHelpful);
+      this.userService.handleChangeHelpfulReviews(
+        review.createdBy.username,
+        !isHelpful ? 'subtract' : 'add'
+      );
       const response = await firstValueFrom(
-        this.httpClient.post(`/api/review/${reviewId}/helpful`, {})
+        this.httpClient.post(`/api/review/${review.id}/helpful`, {})
       );
     } catch (error) {
       this.isError.next(true);
+      this.recentReviews.updateHelpfulStatus(review.id, !isHelpful);
+      this.userService.handleChangeHelpfulReviews(
+        review.createdBy.username,
+        isHelpful ? 'subtract' : 'add'
+      );
     } finally {
-      this.setLoading(reviewId, false);
+      this.setLoading(review.id, false);
     }
   }
 

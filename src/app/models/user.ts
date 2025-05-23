@@ -10,6 +10,7 @@ export interface User {
   totalReviews: number;
   totalFavorites: number;
   averageRating: number;
+  totalHelpfulReviews: number;
   profileDescription: string | null;
   createdAt: string;
 }
