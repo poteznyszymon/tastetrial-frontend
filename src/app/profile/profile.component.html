@@ -62,7 +62,9 @@
                 spellcheck="false"
                 maxlength="250"
               ></textarea>
-              <p class="counter">{{ descriptionValue()?.length }}/250</p>
+              <p class="counter">
+                {{ descriptionValue()?.length }}/250 characters
+              </p>
               <button class="close-wrapper" (click)="descriptionValue.set('')">
                 <lucide-angular [img]="X" size="17"></lucide-angular>
               </button>

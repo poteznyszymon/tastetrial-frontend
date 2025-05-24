@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ChevronLeft, ChevronRight, LucideAngularModule } from 'lucide-angular';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  LucideAngularModule,
+  RefreshCcw,
+  TriangleAlertIcon,
+} from 'lucide-angular';
 import { RecentReviewsService } from '../../../service/reviews/recent-reviews.service';
 import { ReviewComponentComponent } from '../../shared/review-component/review-component.component';
 
@@ -32,9 +39,7 @@ export class ReviewsSectionComponent {
     this.isError$ = recentReviewsService.getIsError();
   }
 
-  async ngOnInit(): Promise<void> {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+  handleReload() {
     this.route.paramMap.subscribe((param) => {
       const username = param.get('username');
       if (username) {
@@ -43,6 +48,15 @@ export class ReviewsSectionComponent {
     });
   }
 
+  async ngOnInit(): Promise<void> {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.handleReload();
+  }
+
   /// Icons
   Arrow = ChevronRight;
+  LoaderIcon = Loader2;
+  ErrorIcon = TriangleAlertIcon;
+  Refresh = RefreshCcw;
 }

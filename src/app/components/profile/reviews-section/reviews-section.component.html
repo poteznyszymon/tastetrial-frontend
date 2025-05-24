@@ -7,11 +7,40 @@
     ></a>
   </div>
   <div class="content">
-    <ng-container *ngIf="isError$ | async; else notError"> error </ng-container>
+    <ng-container *ngIf="isError$ | async; else notError">
+      <div class="wrapper">
+        <div class="error-wrapper">
+          <lucide-angular
+            class="error"
+            size="30"
+            [img]="ErrorIcon"
+          ></lucide-angular>
+        </div>
+        <p class="title">Failed to Load Reviews</p>
+        <p class="subtitle">
+          We encountered a problem while trying to load your reviews. This could
+          be due to a network issue or a temporary server problem.
+        </p>
+        <button (click)="handleReload()">
+          <lucide-angular size="16" [img]="Refresh"></lucide-angular>
+          <p>Try Again</p>
+        </button>
+      </div>
+    </ng-container>
 
     <ng-template #notError>
       <ng-container *ngIf="isLoading$ | async; else content">
-        loading
+        <div class="wrapper">
+          <lucide-angular
+            class="loader"
+            size="30"
+            [img]="LoaderIcon"
+          ></lucide-angular>
+          <p class="title">Loading Reviews</p>
+          <p class="subtitle">
+            Please wait while we fetch your recent reviews...
+          </p>
+        </div>
       </ng-container>
     </ng-template>
 

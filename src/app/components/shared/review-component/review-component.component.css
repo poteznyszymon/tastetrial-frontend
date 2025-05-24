@@ -6,7 +6,6 @@
   overflow: hidden;
   transition: box-shadow 0.3s ease;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border);
 }
 
 .container:hover {
@@ -17,28 +16,44 @@
   flex: 2;
   background-color: var(--muted);
   position: relative;
-  max-height: 13rem;
+  max-height: 14rem;
 }
 
 .image-wrapper > img {
-  max-height: 13rem;
+  max-height: 14rem;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
 .cusisine {
-  border: 1px solid var(--border);
-
   position: absolute;
   left: 1rem;
   top: 1rem;
+  color: var(--foreground);
   background-color: var(--card);
   border-radius: var(--radius);
   font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.8rem;
   user-select: none;
+}
+
+.average {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  color: var(--card);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  user-select: none;
+  border-radius: var(--radius);
+  background-color: var(--not-found-secondary);
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .content-wrapper {
@@ -98,6 +113,11 @@
 
 .content-text {
   font-size: 0.85rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Ogranicza do 3 linii */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bottom {
@@ -154,6 +174,75 @@
 
 .bottom > a:hover {
   background-color: var(--muted);
+}
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+  height: 7rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 0.9rem;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+textarea::placeholder {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+textarea:focus {
+  box-shadow: 0 0 0 4px var(--primary-foreground);
+  border: 2px solid var(--primary);
+}
+
+.counter {
+  font-size: 0.7rem;
+  align-self: flex-end;
+  color: var(--muted-foreground);
+}
+
+.close-wrapper {
+  visibility: hidden;
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  border-radius: 50%;
+  padding: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--muted-foreground);
+}
+
+.textarea-wrapper:hover .close-wrapper {
+  visibility: visible;
+}
+
+.close-wrapper:hover {
+  background-color: var(--muted);
+}
+
+.alert-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.star-review {
+  cursor: pointer;
 }
 
 @media (max-width: 800px) {

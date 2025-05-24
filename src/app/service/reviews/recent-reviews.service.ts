@@ -14,6 +14,7 @@ export class RecentReviewsService {
   constructor(public httpClient: HttpClient) {}
 
   public async findReviewsByUsername(username: string) {
+    this.isError.next(false);
     this.isLoading.next(true);
     try {
       const reviews = await firstValueFrom(

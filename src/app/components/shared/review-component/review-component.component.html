@@ -10,6 +10,10 @@
           review?.restaurant?.cuisineType?.slice(1)!.toLowerCase()
       }}
     </div>
+    <div class="average">
+      <lucide-angular size="14" [img]="Star"></lucide-angular>
+      <p>{{ review?.restaurant?.averageRatings?.toPrecision(2) }}</p>
+    </div>
   </div>
   <div class="content-wrapper">
     <div class="header">
@@ -54,12 +58,51 @@
           <p class="helpful-info">Helpful ({{ review?.totalHelpfulVotes }})</p>
         </button>
         <app-dialog-menu
+          [action]="handleEditReview.bind(this)"
+          (onClose)="onClose()"
           *ngIf="isOwner"
           openButtonText="Edit"
           type="secondary"
           title="Edit Review"
           subTitle="Update your review for Trattoria Italiana. Your honest feedback helps others make better dining choices."
-          >xd
+        >
+          <div class="stars">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+              <div
+                (mouseenter)="tempRatingValue.set(star)"
+                (mouseleave)="tempRatingValue.set(ratingValue())"
+                (click)="ratingValue.set(star)"
+                class="star-review"
+                [ngClass]="{
+                  filled: star <= tempRatingValue(),
+                  empty: star > tempRatingValue()
+                }"
+              >
+                <lucide-angular size="23" [img]="Star"></lucide-angular>
+              </div>
+            </ng-container>
+          </div>
+          <div class="textarea-wrapper">
+            <textarea
+              [value]="contentValue()"
+              (input)="handleChange($event)"
+              placeholder="Share your experience with this restaurant..."
+              spellcheck="false"
+              maxlength="1024"
+            ></textarea>
+            <p class="counter">{{ contentValue()?.length }}/1024 characters</p>
+            <button
+              title="Clear"
+              class="close-wrapper"
+              (click)="clearContent()"
+            >
+              <lucide-angular [img]="X" size="17"></lucide-angular>
+            </button>
+            <div class="alert-wrapper">
+              <lucide-angular size="17" [img]="Alert"></lucide-angular>
+              <p>Your review will be visible to all TasteTrial users.</p>
+            </div>
+          </div>
         </app-dialog-menu>
       </div>
       <a routerLink="/"
