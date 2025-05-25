@@ -9,7 +9,7 @@
         class="link"
         ><p>Profile</p></a
       >
-      <a routerLink="Restaurants" class="link"><p>Restaurants</p></a>
+      <a routerLink="/restaurants" class="link"><p>Restaurants</p></a>
     </div>
     <div
       *ngIf="(user$ | async) === null && (isLoading$ | async) === false"
@@ -61,7 +61,7 @@
     <a routerLink="/" (click)="handleMenuClick()">
       <li class="link">Home</li>
     </a>
-    <a routerLink="/" (click)="handleMenuClick()">
+    <a routerLink="/restaurants" (click)="handleMenuClick()">
       <li class="link">Restaurants</li>
     </a>
     <a routerLink="/" (click)="handleMenuClick()">

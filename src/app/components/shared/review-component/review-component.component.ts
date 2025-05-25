@@ -14,6 +14,7 @@ import { HelpfulService } from '../../../service/reviews/helpful.service';
 import { RouterLink } from '@angular/router';
 import { DialogMenuComponent } from '../dialog-menu/dialog-menu.component';
 import { timeout } from 'rxjs';
+import { EditReviewsService } from '../../../service/reviews/edit-reviews.service';
 
 @Component({
   selector: 'app-review-component',
@@ -25,15 +26,25 @@ export class ReviewComponentComponent {
   @Input() review: Review | null = null;
   @Input() isOwner = false;
 
+  isLoading$;
+
   contentValue = signal<string | null>(null);
   ratingValue = signal<number>(0);
   tempRatingValue = signal<number>(0);
 
-  constructor(public helpfulService: HelpfulService) {}
+  constructor(
+    public helpfulService: HelpfulService,
+    public editReviewsService: EditReviewsService
+  ) {
+    this.isLoading$ = editReviewsService.getIsLoding();
+  }
 
-  async handleEditReview(): Promise<void> {
-    console.log(this.contentValue(), this.ratingValue());
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+  async handleEditReview(reviewId: number): Promise<void> {
+    await this.editReviewsService.editReviewData(
+      reviewId,
+      this.contentValue(),
+      this.ratingValue()
+    );
   }
 
   toggleHelpfulVote(review: Review, isHelpful: boolean) {

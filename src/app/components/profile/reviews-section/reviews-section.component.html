@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <h3>Recent Reviews</h3>
-    <a class="button" routerLink="/"
+    <a class="button" [routerLink]="['/profile', username(), 'reviews']"
       ><span>View All</span>
       <lucide-angular size="16" [img]="Arrow"></lucide-angular
     ></a>
@@ -45,12 +45,18 @@
     </ng-template>
 
     <ng-template #content>
-      <ng-container *ngFor="let review of reviews$ | async">
-        <app-review-component
-          [review]="review"
-          [isOwner]="isOwner"
-        ></app-review-component>
+      <ng-container *ngIf="reviews$ | async as reviews; else noReviews">
+        <ng-container *ngIf="reviews.length > 0; else noReviews">
+          <ng-container *ngFor="let review of reviews">
+            <app-review-component
+              [review]="review"
+              [isOwner]="isOwner"
+            ></app-review-component>
+          </ng-container>
+        </ng-container>
       </ng-container>
     </ng-template>
+
+    <ng-template #noReviews> no reviews </ng-template>
   </div>
 </div>

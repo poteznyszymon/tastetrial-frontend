@@ -1,12 +1,28 @@
 section {
-  background-color: var(--background);
-  height: 100vh;
+  height: calc(100vh - 4rem);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--background);
 }
 
 .custom-skeleton {
   width: 50rem;
   height: 10rem;
+}
+
+.slogan {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: 700;
+}
+
+.slogan > h1 {
+  font-size: 4rem;
+}
+
+.slogan > span {
+  color: var(--primary);
+  font-size: 4rem;
 }

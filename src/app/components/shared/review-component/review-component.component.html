@@ -58,7 +58,8 @@
           <p class="helpful-info">Helpful ({{ review?.totalHelpfulVotes }})</p>
         </button>
         <app-dialog-menu
-          [action]="handleEditReview.bind(this)"
+          [loading]="(isLoading$ | async) ?? false"
+          [action]="handleEditReview.bind(this, review?.id || -1)"
           (onClose)="onClose()"
           *ngIf="isOwner"
           openButtonText="Edit"
@@ -105,7 +106,7 @@
           </div>
         </app-dialog-menu>
       </div>
-      <a routerLink="/"
+      <a routerLink="/restaurants"
         >Restaurant<lucide-angular size="16" [img]="Arrow"></lucide-angular
       ></a>
     </div>

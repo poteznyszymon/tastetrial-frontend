@@ -5,6 +5,8 @@ import { PrivateRouteGuardService } from './service/auth/private-route-guard.ser
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PublicRouteGuardService } from './service/auth/public-route-guard.service';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { ReviewsComponent } from './profile/reviews/reviews.component';
 
 export const routes: Routes = [
   {
@@ -17,6 +19,10 @@ export const routes: Routes = [
     //canActivate: [PrivateRouteGuardService],
   },
   {
+    path: 'profile/:username/reviews',
+    component: ReviewsComponent,
+  },
+  {
     path: 'auth/register',
     component: RegisterComponent,
     canActivate: [PublicRouteGuardService],
@@ -25,6 +31,10 @@ export const routes: Routes = [
     path: 'auth/login',
     component: LoginComponent,
     canActivate: [PublicRouteGuardService],
+  },
+  {
+    path: 'restaurants',
+    component: RestaurantsComponent,
   },
   {
     path: '**',

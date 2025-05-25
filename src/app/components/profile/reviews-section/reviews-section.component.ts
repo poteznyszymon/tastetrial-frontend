@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
   ChevronLeft,
@@ -26,6 +26,8 @@ import { ReviewComponentComponent } from '../../shared/review-component/review-c
 export class ReviewsSectionComponent {
   @Input() isOwner = false;
 
+  username = signal('');
+
   reviews$;
   isLoading$;
   isError$;
@@ -44,6 +46,7 @@ export class ReviewsSectionComponent {
       const username = param.get('username');
       if (username) {
         this.recentReviewsService.findReviewsByUsername(username);
+        this.username.set(username);
       }
     });
   }

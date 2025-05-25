@@ -1,5 +1,5 @@
 footer {
-  background-color: var(--background);
+  background-color: var(--card);
   border-top: 1px solid var(--border);
   padding: 1.5rem 0rem;
   color: var(--muted-foreground);
