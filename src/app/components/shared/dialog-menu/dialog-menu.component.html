@@ -1,4 +1,4 @@
-<button class="button" [ngClass]="type" (click)="handleOpen()">
+<button class="button" [ngClass]="type" (click)="handleOpen($event)">
   <lucide-angular *ngIf="showEditIcon" [img]="Edit" size="15"></lucide-angular>
   <p>{{ openButtonText }}</p>
 </button>
@@ -19,7 +19,10 @@
       <button
         class="primary"
         (click)="handleButtonClick()"
-        [disabled]="loading"
+        [disabled]="disabled"
+        [ngClass]="{
+          loading: loading
+        }"
       >
         <p>Save Changes</p>
         <div class="loader-wrapper" *ngIf="loading">

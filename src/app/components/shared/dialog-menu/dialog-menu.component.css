@@ -132,16 +132,24 @@ h4 {
   opacity: 0.9;
 }
 
-.secondary:disabled:hover {
+.secondary.loading:hover {
   cursor: not-allowed;
+}
+
+.primary.loading:hover {
+  cursor: not-allowed;
+}
+
+.primary.loading > p {
+  opacity: 0;
+}
+
+.primary:disabled {
+  opacity: 0.8;
 }
 
 .primary:disabled:hover {
   cursor: not-allowed;
-}
-
-.primary:disabled > p {
-  opacity: 0;
 }
 
 @keyframes fadeInScale {

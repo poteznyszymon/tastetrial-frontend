@@ -7,6 +7,7 @@ import {
   Edit,
   Heart,
   LucideAngularModule,
+  MapPin,
   Star,
   X,
 } from 'lucide-angular';
@@ -15,10 +16,16 @@ import { RouterLink } from '@angular/router';
 import { DialogMenuComponent } from '../dialog-menu/dialog-menu.component';
 import { timeout } from 'rxjs';
 import { EditReviewsService } from '../../../service/reviews/edit-reviews.service';
+import { ReviewEditMenuComponent } from '../review-edit-menu/review-edit-menu.component';
 
 @Component({
   selector: 'app-review-component',
-  imports: [CommonModule, LucideAngularModule, RouterLink, DialogMenuComponent],
+  imports: [
+    CommonModule,
+    LucideAngularModule,
+    RouterLink,
+    ReviewEditMenuComponent,
+  ],
   templateUrl: './review-component.component.html',
   styleUrl: './review-component.component.css',
 })
@@ -28,9 +35,15 @@ export class ReviewComponentComponent {
 
   isLoading$;
 
-  contentValue = signal<string | null>(null);
-  ratingValue = signal<number>(0);
-  tempRatingValue = signal<number>(0);
+  openDetailsMenu = signal(false);
+
+  handleReviewsMenuClose() {
+    this.openDetailsMenu.set(false);
+  }
+
+  handleReviewsMenuOpen() {
+    this.openDetailsMenu.set(true);
+  }
 
   constructor(
     public helpfulService: HelpfulService,
@@ -39,41 +52,8 @@ export class ReviewComponentComponent {
     this.isLoading$ = editReviewsService.getIsLoding();
   }
 
-  async handleEditReview(reviewId: number): Promise<void> {
-    await this.editReviewsService.editReviewData(
-      reviewId,
-      this.contentValue(),
-      this.ratingValue()
-    );
-  }
-
   toggleHelpfulVote(review: Review, isHelpful: boolean) {
     this.helpfulService.toggleHelpfulVote(review, isHelpful);
-  }
-
-  handleChange(event: Event): void {
-    const target = event.target as HTMLTextAreaElement;
-    this.contentValue.set(target.value);
-  }
-
-  onClose() {
-    this.refreshContent();
-  }
-
-  clearContent() {
-    this.contentValue.set('');
-  }
-
-  refreshContent() {
-    if (this.review) {
-      this.contentValue.set(this.review.content);
-      this.ratingValue.set(this.review.rating);
-      this.tempRatingValue.set(this.review.rating);
-    }
-  }
-
-  ngOnInit(): void {
-    this.refreshContent();
   }
 
   /// Icons
@@ -83,4 +63,5 @@ export class ReviewComponentComponent {
   Arrow = ChevronRight;
   X = X;
   Alert = AlertCircle;
+  Pin = MapPin;
 }

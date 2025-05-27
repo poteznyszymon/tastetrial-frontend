@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  Output,
+  signal,
+} from '@angular/core';
 import { Loader2, LucideAngularModule, SquarePen, X } from 'lucide-angular';
 
 @Component({
@@ -15,13 +22,15 @@ export class DialogMenuComponent {
   @Input() loading = false;
   @Input() type: 'primary' | 'secondary' = 'primary';
   @Input() showEditIcon = true;
+  @Input() disabled = false;
 
   @Input() action: () => Promise<void> = async () => {};
   @Output() onClose = new EventEmitter<void>();
 
   isOpen = signal(false);
 
-  handleOpen() {
+  handleOpen(event: Event) {
+    event.stopPropagation();
     this.isOpen.set(true);
   }
 

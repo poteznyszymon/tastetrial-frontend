@@ -47,12 +47,14 @@
     <ng-template #content>
       <ng-container *ngIf="reviews$ | async as reviews; else noReviews">
         <ng-container *ngIf="reviews.length > 0; else noReviews">
-          <ng-container *ngFor="let review of reviews">
-            <app-review-component
-              [review]="review"
-              [isOwner]="isOwner"
-            ></app-review-component>
-          </ng-container>
+          <div class="reviews_wrapper">
+            <ng-container *ngFor="let review of reviews">
+              <app-review-component
+                [review]="review"
+                [isOwner]="isOwner"
+              ></app-review-component>
+            </ng-container>
+          </div>
         </ng-container>
       </ng-container>
     </ng-template>

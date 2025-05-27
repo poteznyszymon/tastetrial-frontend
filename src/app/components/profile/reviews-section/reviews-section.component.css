@@ -92,11 +92,23 @@
   max-width: 30rem;
 }
 
+.reviews_wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .reviews_wrapper {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

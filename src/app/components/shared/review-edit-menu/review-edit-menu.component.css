@@ -1,0 +1,85 @@
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+  height: 7rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 0.9rem;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+textarea::placeholder {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+textarea:focus {
+  box-shadow: 0 0 0 4px var(--primary-foreground);
+  border: 2px solid var(--primary);
+}
+
+.counter {
+  font-size: 0.7rem;
+  align-self: flex-end;
+  color: var(--muted-foreground);
+}
+
+.close-wrapper {
+  visibility: hidden;
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  border-radius: 50%;
+  padding: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--muted-foreground);
+}
+
+.close-wrapper:hover {
+  background-color: var(--muted);
+}
+
+.star-review {
+  cursor: pointer;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+}
+
+.empty {
+  color: var(--border);
+}
+
+.filled {
+  color: var(--gold-star);
+}
+
+.alert-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.textarea-wrapper:hover .close-wrapper {
+  visibility: visible;
+}
+
+.close-wrapper:hover {
+  background-color: var(--muted);
+}

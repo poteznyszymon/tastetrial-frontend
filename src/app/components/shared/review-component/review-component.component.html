@@ -57,58 +57,66 @@
           <lucide-angular size="15" [img]="Heart"></lucide-angular>
           <p class="helpful-info">Helpful ({{ review?.totalHelpfulVotes }})</p>
         </button>
-        <app-dialog-menu
-          [loading]="(isLoading$ | async) ?? false"
-          [action]="handleEditReview.bind(this, review?.id || -1)"
-          (onClose)="onClose()"
-          *ngIf="isOwner"
-          openButtonText="Edit"
-          type="secondary"
-          title="Edit Review"
-          subTitle="Update your review for Trattoria Italiana. Your honest feedback helps others make better dining choices."
-        >
-          <div class="stars">
-            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-              <div
-                (mouseenter)="tempRatingValue.set(star)"
-                (mouseleave)="tempRatingValue.set(ratingValue())"
-                (click)="ratingValue.set(star)"
-                class="star-review"
-                [ngClass]="{
-                  filled: star <= tempRatingValue(),
-                  empty: star > tempRatingValue()
-                }"
-              >
-                <lucide-angular size="23" [img]="Star"></lucide-angular>
-              </div>
-            </ng-container>
-          </div>
-          <div class="textarea-wrapper">
-            <textarea
-              [value]="contentValue()"
-              (input)="handleChange($event)"
-              placeholder="Share your experience with this restaurant..."
-              spellcheck="false"
-              maxlength="1024"
-            ></textarea>
-            <p class="counter">{{ contentValue()?.length }}/1024 characters</p>
-            <button
-              title="Clear"
-              class="close-wrapper"
-              (click)="clearContent()"
-            >
-              <lucide-angular [img]="X" size="17"></lucide-angular>
-            </button>
-            <div class="alert-wrapper">
-              <lucide-angular size="17" [img]="Alert"></lucide-angular>
-              <p>Your review will be visible to all TasteTrial users.</p>
-            </div>
-          </div>
-        </app-dialog-menu>
+        <app-review-edit-menu
+          [isOwner]="isOwner"
+          [review]="review"
+        ></app-review-edit-menu>
       </div>
-      <a routerLink="/restaurants"
-        >Restaurant<lucide-angular size="16" [img]="Arrow"></lucide-angular
-      ></a>
+      <button (click)="handleReviewsMenuOpen()">
+        Details<lucide-angular size="16" [img]="Arrow"></lucide-angular>
+      </button>
+    </div>
+  </div>
+</div>
+<div
+  *ngIf="openDetailsMenu()"
+  class="details-menu-wrapper"
+  (click)="handleReviewsMenuClose()"
+>
+  <div class="detials-container" (click)="$event.stopPropagation()">
+    <button class="close-icon-wrapper" (click)="handleReviewsMenuClose()">
+      <lucide-angular size="18" [img]="X"></lucide-angular>
+    </button>
+    <div class="details-header">
+      <div class="details-image-wrapper"></div>
+      <div class="detials-info-container">
+        <a routerLink="/" class="details-title">{{
+          review?.restaurant?.name
+        }}</a>
+        <div class="detials-location-wrapper">
+          <lucide-angular [img]="Pin" size="15"></lucide-angular>
+          <p>{{ review?.restaurant?.address?.city }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="stars-section">
+      <div class="stars">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+          <div
+            class="stars"
+            [ngClass]="{
+              filled: star <= review!.rating,
+              empty: star > review!.rating
+            }"
+          >
+            <lucide-angular size="23" [img]="Star"></lucide-angular>
+          </div>
+        </ng-container>
+      </div>
+      <p>{{ review?.rating }}/5</p>
+      <p>•{{ review?.editedAt | date }}</p>
+    </div>
+    <p class="detials-content">{{ review?.content }}</p>
+    <div class="details-footer">
+      <div class="author-section">
+        <span class="author"
+          >Author:
+          <a [routerLink]="'/profile/' + review?.createdBy?.username">{{
+            review?.createdBy?.username
+          }}</a></span
+        >
+        <p class="date">Published {{ review?.createdAt | date }}</p>
+      </div>
     </div>
   </div>
 </div>
