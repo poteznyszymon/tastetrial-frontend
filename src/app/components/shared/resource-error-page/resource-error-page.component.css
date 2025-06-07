@@ -1,15 +1,15 @@
 .error-page-container {
-  min-height: 100vh;
+  min-height: calc(100vh - 10rem - 2px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.8rem;
   background-color: var(--background);
   padding: 1rem;
 }
 
 .alert-icon-wrapper {
-  margin-top: 10rem;
   padding: 1.5rem;
   border-radius: 50%;
   background-color: var(--error-background);

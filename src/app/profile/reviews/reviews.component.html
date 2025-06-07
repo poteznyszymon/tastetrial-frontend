@@ -1,1 +1,36 @@
-<p>reviews works!</p>
+<ng-container *ngIf="isError$ | async; else loading">
+  <app-resource-error-page
+    title="Failed to Load Reviews"
+    subtitle="There was a problem retrieving the reviews data. Please check your internet connection and try again."
+  ></app-resource-error-page>
+</ng-container>
+
+<ng-template #loading>
+  <ng-container *ngIf="isLoading$ | async; else content">loading</ng-container>
+</ng-template>
+
+<ng-template #content>
+  <section>
+    <div class="reviews-container">
+      <div class="header">
+        <a [routerLink]="'/profile/' + username">
+          <lucide-angular size="20" [img]="ArrowLeft"></lucide-angular>
+        </a>
+        <p>All Reviews</p>
+      </div>
+      <div class="filter-sort-menu"></div>
+      <ng-container *ngIf="reviews$ | async as reviews">
+        <ng-container *ngIf="reviews.length > 0">
+          <div class="reviews_wrapper">
+            <ng-container *ngFor="let review of reviews">
+              <app-review-component
+                [isOwner]="isOwner"
+                [review]="review"
+              ></app-review-component>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </section>
+</ng-template>

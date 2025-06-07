@@ -239,7 +239,7 @@
   position: relative;
   background-color: var(--card);
   width: 100%;
-  max-width: 35rem;
+  max-width: 30rem;
   animation: fadeInScale 0.1s ease-out;
   border-radius: var(--radius);
   border: solid 1px var(--border);
@@ -249,7 +249,6 @@
   gap: 1.5rem;
   text-align: start;
   max-height: 25rem;
-  overflow-y: auto;
 }
 
 .close-icon-wrapper {
@@ -286,8 +285,9 @@
 }
 
 .details-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .details-title:hover {
@@ -313,13 +313,13 @@
 
 .stars-section > p {
   color: var(--muted-foreground);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .breakpoint {
   width: 100%;
-  height: 5px;
-  background-color: red;
+  height: 1px;
+  background-color: var(--border);
 }
 
 .details-footer {
@@ -354,8 +354,19 @@
 }
 
 .detials-content {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 400;
+  overflow-y: auto;
+}
+
+.button {
+  background-color: var(--foreground);
+  width: fit-content;
+  color: var(--card);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  border-radius: var(--radius);
 }
 
 @keyframes fadeInScale {

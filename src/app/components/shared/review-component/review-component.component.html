@@ -99,14 +99,13 @@
               empty: star > review!.rating
             }"
           >
-            <lucide-angular size="23" [img]="Star"></lucide-angular>
+            <lucide-angular size="20" [img]="Star"></lucide-angular>
           </div>
         </ng-container>
       </div>
-      <p>{{ review?.rating }}/5</p>
-      <p>•{{ review?.editedAt | date }}</p>
     </div>
     <p class="detials-content">{{ review?.content }}</p>
+    <div class="breakpoint"></div>
     <div class="details-footer">
       <div class="author-section">
         <span class="author"
@@ -116,6 +115,29 @@
           }}</a></span
         >
         <p class="date">Published {{ review?.createdAt | date }}</p>
+      </div>
+      <div class="left-buttons">
+        <button
+          [disabled]="helpfulService.getIsLoading(review?.id || -1) | async"
+          (click)="
+            toggleHelpfulVote(
+              review!,
+              !review?.votedHelpfulByCurrentUser || false
+            )
+          "
+          [ngClass]="{
+            helpful: review?.votedHelpfulByCurrentUser,
+            unhelpful: !review?.votedHelpfulByCurrentUser,
+          }"
+        >
+          <lucide-angular size="15" [img]="Heart"></lucide-angular>
+          <p class="helpful-info">Helpful ({{ review?.totalHelpfulVotes }})</p>
+        </button>
+
+        <app-review-edit-menu
+          [isOwner]="isOwner"
+          [review]="review"
+        ></app-review-edit-menu>
       </div>
     </div>
   </div>

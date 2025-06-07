@@ -1,7 +1,7 @@
 footer {
   background-color: var(--card);
   border-top: 1px solid var(--border);
-  padding: 1.5rem 0rem;
+  height: 4rem;
   color: var(--muted-foreground);
   position: relative;
 }
@@ -13,6 +13,7 @@ footer {
   align-items: center;
   justify-content: end;
   padding: 0rem 1rem;
+  height: 100%;
 }
 
 .footer-wrapper > p {
@@ -31,6 +32,11 @@ lucide-angular {
 
 .footer-wrapper > a {
   cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.footer-wrapper > a:hover {
+  scale: 115%;
 }
 
 .footer-wrapper > a:hover {

@@ -4,6 +4,7 @@ import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import { RecentReviewsService } from './recent-reviews.service';
 import { Review } from '../../models/review';
 import { UsersService } from '../users/users.service';
+import { UserReviewsService } from './user-reviews.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class HelpfulService {
   constructor(
     public httpClient: HttpClient,
     public recentReviews: RecentReviewsService,
+    public userReviews: UserReviewsService,
     public userService: UsersService
   ) {}
 
@@ -23,6 +25,7 @@ export class HelpfulService {
     this.setLoading(review.id, true);
     try {
       this.recentReviews.updateHelpfulStatus(review.id, isHelpful);
+      this.userReviews.updateHelpfulStatus(review.id, isHelpful);
       this.userService.handleChangeHelpfulReviews(
         review.createdBy.username,
         !isHelpful ? 'subtract' : 'add'
