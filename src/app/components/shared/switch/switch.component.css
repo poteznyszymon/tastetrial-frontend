@@ -1,0 +1,28 @@
+.container {
+  background-color: var(--muted);
+  width: 2.8rem;
+  height: 1.3rem;
+  border-radius: 3rem;
+  display: flex;
+  padding: 0.1rem;
+  align-items: center;
+  justify-content: flex-start;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.container.active {
+  background-color: var(--foreground);
+}
+
+.dot {
+  background-color: var(--card);
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.container.active .dot {
+  transform: translateX(1.5rem);
+}

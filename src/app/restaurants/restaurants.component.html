@@ -1,1 +1,27 @@
-<p>restaurants works!</p>
+<ng-container *ngIf="isError$ | async; else content">
+  <app-resource-error-page
+    title="Failed to Load Restaurants"
+    subtitle="There was a problem retrieving the restaurantsata. Please check your internet connection and try again."
+  ></app-resource-error-page>
+</ng-container>
+
+<ng-template #content>
+  <section>
+    <div class="restaurants-container">
+      <div class="header">
+        <h2>Discover Restaurants</h2>
+        <p>
+          Find great places to dine and share your experiences with the
+          community
+        </p>
+      </div>
+      <app-filter></app-filter>
+
+      <ng-container *ngIf="isLoading$ | async; else restaurants">
+        loading
+      </ng-container>
+
+      <ng-template #restaurants></ng-template>
+    </div>
+  </section>
+</ng-template>

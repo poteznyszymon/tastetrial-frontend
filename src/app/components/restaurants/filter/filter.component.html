@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="container">
+    <label for="input" class="input-wrapper">
+      <lucide-angular size="16" [img]="SearchIcon"></lucide-angular>
+      <input id="input" type="text" placeholder="Search for Restaurant" />
+    </label>
+    <div class="menus-container">
+      <app-drop-down defaultValue="All Cuisines"></app-drop-down>
+      <app-drop-down defaultValue="All Prices"></app-drop-down>
+      <app-drop-down defaultValue="Cheapest"></app-drop-down>
+    </div>
+    <app-switch
+      [value]="switchButtonValue()"
+      (valueChange)="handleSwitchButtonValueSwap($event)"
+    ></app-switch>
+  </div>
+</div>

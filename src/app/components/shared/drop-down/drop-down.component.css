@@ -1,0 +1,17 @@
+.container {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.container:hover {
+  background-color: var(--muted);
+}
+
+.container > p {
+  font-size: 0.8rem;
+}

@@ -16,7 +16,7 @@
         <a [routerLink]="'/profile/' + username">
           <lucide-angular size="20" [img]="ArrowLeft"></lucide-angular>
         </a>
-        <p>All Reviews</p>
+        <h3>All Reviews</h3>
       </div>
       <div class="filter-sort-menu"></div>
       <ng-container *ngIf="reviews$ | async as reviews">

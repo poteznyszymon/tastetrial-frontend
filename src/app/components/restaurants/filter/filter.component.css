@@ -1,0 +1,45 @@
+.wrapper {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  gap: 1rem;
+}
+
+.input-wrapper > input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.input-wrapper:focus-within {
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-foreground);
+}
+
+.input-wrapper lucide-angular {
+  color: var(--muted-foreground);
+}
+
+.menus-container {
+  display: flex;
+  gap: 1rem;
+}
+
+app-drop-down {
+  flex: 1; /* Sprawia, że komponent <app-drop-down> będzie rósł i zajmował dostępną przestrzeń */
+}

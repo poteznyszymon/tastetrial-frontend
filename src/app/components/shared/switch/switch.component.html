@@ -1,0 +1,7 @@
+<div
+  class="container"
+  [ngClass]="{ active: value }"
+  (click)="valueChange.emit(!value)"
+>
+  <div class="dot"></div>
+</div>
