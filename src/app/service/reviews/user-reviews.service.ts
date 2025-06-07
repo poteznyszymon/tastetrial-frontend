@@ -72,6 +72,24 @@ export class UserReviewsService {
     this.reviews.next(updatedReviews);
   }
 
+  public updateReviewData(newReview: Review) {
+    const currentReviews = this.reviews.getValue();
+    if (!currentReviews) return;
+
+    const updatedReviews = currentReviews.map((review) => {
+      if (review.id === newReview.id) {
+        return {
+          ...review,
+          rating: newReview.rating,
+          content: newReview.content,
+        };
+      }
+      return review;
+    });
+
+    this.reviews.next(updatedReviews);
+  }
+
   public getReviews = (): Observable<Review[] | null> => {
     return this.reviews.asObservable();
   };

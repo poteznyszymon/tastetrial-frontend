@@ -4,6 +4,7 @@ import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { RecentReviewsService } from './recent-reviews.service';
 import { Review } from '../../models/review';
 import { ToastService } from '../shared/toast.service';
+import { UserReviewsService } from './user-reviews.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class EditReviewsService {
   constructor(
     public httpClient: HttpClient,
     public recentReviewsService: RecentReviewsService,
+    public userReviews: UserReviewsService,
     public toastService: ToastService
   ) {}
 
@@ -33,6 +35,7 @@ export class EditReviewsService {
         })
       );
       this.recentReviewsService.updateReviewData(response);
+      this.userReviews.updateReviewData(response);
       this.toastService.show('Review sucessfully updated.', 'primary');
     } catch (error) {
       this.isError.next(true);
