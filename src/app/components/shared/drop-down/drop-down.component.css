@@ -7,6 +7,8 @@
   justify-content: space-between;
   cursor: pointer;
   position: relative;
+  user-select: none;
+  width: 100%;
 }
 
 .container:hover {
@@ -26,23 +28,34 @@
 .values > p {
   font-size: 0.8rem;
   font-weight: 500;
+  white-space: nowrap;
+}
+
+.container > lucide-angular {
+  transition: transform 0.3s ease;
+}
+
+.container > lucide-angular.active {
+  transform: rotate(180deg);
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 110%; /* Poniżej kontenera */
+  top: 110%;
   left: 0;
-  width: 100%; /* Rozciągnij na szerokość kontenera */
-  background-color: var(--card); /* Ten sam kolor co wrapper */
+  width: 100%;
+  background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0 0.1);
-  z-index: 10; /* Aby był nad innymi elementami */
-
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
   animation: fadeInScale 0.1s ease-out;
+  max-height: 15rem;
+  overflow-y: auto;
 }
 
 .dropdown-menu ul {
+  text-align: start;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -51,9 +64,12 @@
 .dropdown-menu li {
   margin-left: 0.3rem;
   margin-right: 0.3rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.7rem;
   cursor: pointer;
   font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .dropdown-menu li:first-child {

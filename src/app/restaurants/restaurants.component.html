@@ -15,7 +15,7 @@
           community
         </p>
       </div>
-      <app-filter></app-filter>
+      <app-filter [cuisines]="cuisines" [orderBy]="orderBy"></app-filter>
 
       <ng-container *ngIf="isLoading$ | async; else restaurants">
         loading

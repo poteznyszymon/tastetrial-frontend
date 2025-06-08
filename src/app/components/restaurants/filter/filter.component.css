@@ -50,6 +50,7 @@
   font-weight: 500;
   background-color: var(--foreground);
   color: var(--card);
+  user-select: none;
 }
 
 .clear-btn:hover {

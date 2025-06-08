@@ -15,6 +15,29 @@ export class RestaurantsComponent {
   isLoading$;
   isError$;
 
+  cuisines = [
+    'ITALIAN',
+    'FRENCH',
+    'AMERICAN',
+    'MEXICAN',
+    'CHINESE',
+    'JAPANESE',
+    'INDIAN',
+    'THAI',
+    'SPANISH',
+    'MEDITERRANEAN',
+    'VEGAN',
+    'OTHER',
+  ];
+
+  orderBy = [
+    'Top rated',
+    'Most revieved',
+    'Newest',
+    'Name (A-Z)',
+    'Name (Z-A)',
+  ];
+
   constructor(public restaurantService: RestaurantsService) {
     this.restaurants$ = this.restaurantService.getRestaurants();
     this.isLoading$ = this.restaurantService.getIsLoading();

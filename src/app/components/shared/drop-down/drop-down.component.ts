@@ -8,7 +8,12 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { ChevronDown, LucideAngularModule, Utensils } from 'lucide-angular';
+import {
+  Check,
+  ChevronDown,
+  LucideAngularModule,
+  Utensils,
+} from 'lucide-angular';
 
 @Component({
   selector: 'app-drop-down',
@@ -20,11 +25,12 @@ import { ChevronDown, LucideAngularModule, Utensils } from 'lucide-angular';
 export class DropDownComponent {
   @Input() defaultValue: string = '';
   @Input() options: string[] = [];
+  @Input() multiple: boolean = false;
 
   @Output() selectionChange = new EventEmitter<string>();
 
   isOpen = signal(false);
-  activeOption = signal('');
+  activeOption = signal<string[]>([]);
 
   ArrowDown = ChevronDown;
   Utensils = Utensils;
@@ -32,7 +38,6 @@ export class DropDownComponent {
   constructor(private elementRef: ElementRef) {}
 
   handleOpenChange() {
-    console.log('click');
     this.isOpen.update((val) => !val);
   }
 
@@ -41,12 +46,22 @@ export class DropDownComponent {
   }
 
   selectOption(option: string) {
-    this.activeOption.set(option);
+    if (this.multiple) {
+      if (this.activeOption().includes(option)) {
+        this.activeOption.update((prev) =>
+          prev.filter((item) => item !== option)
+        );
+      } else {
+        this.activeOption.update((prev) => [...prev, option]);
+      }
+    } else {
+      this.activeOption.set(new Array(option));
+    }
     this.selectionChange.emit(option);
   }
 
   reset() {
-    this.activeOption.set('');
+    this.activeOption.set([]);
   }
 
   @HostListener('document:click', ['$event'])
@@ -56,4 +71,15 @@ export class DropDownComponent {
       this.handleCloseMenu();
     }
   }
+
+  get displayValue(): string {
+    if (this.activeOption().length === 0) {
+      return this.defaultValue;
+    } else if (this.activeOption().length === 1) {
+      return this.activeOption()[0];
+    }
+    return `${this.activeOption().length} selected`;
+  }
+
+  CheckIcon = Check;
 }

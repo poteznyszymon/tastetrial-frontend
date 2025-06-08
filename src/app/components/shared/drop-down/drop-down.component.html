@@ -1,16 +1,26 @@
-<div class="container" (click)="handleOpenChange()">
+<button class="container" (click)="handleOpenChange()">
   <div class="values">
     <lucide-angular [img]="Utensils" size="16"></lucide-angular>
-    <p>{{ activeOption() || defaultValue }}</p>
+    <p>{{ displayValue }}</p>
   </div>
-  <lucide-angular size="16" [img]="ArrowDown"></lucide-angular>
-
+  <lucide-angular
+    [ngClass]="{ active: isOpen() }"
+    size="16"
+    [img]="ArrowDown"
+  ></lucide-angular>
   <div class="dropdown-menu" *ngIf="isOpen()">
     <ul>
-      <li>{{ defaultValue }}</li>
+      <li (click)="reset()">{{ defaultValue }}</li>
       <ng-container *ngFor="let option of options">
-        <li (click)="selectOption(option)">{{ option }}</li>
+        <li (click)="selectOption(option)">
+          {{ option }}
+          <lucide-angular
+            size="16"
+            [img]="CheckIcon"
+            *ngIf="activeOption().includes(option)"
+          ></lucide-angular>
+        </li>
       </ng-container>
     </ul>
   </div>
-</div>
+</button>

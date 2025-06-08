@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, Input, signal, ViewChild } from '@angular/core';
 import { ChevronDown, LucideAngularModule, Search } from 'lucide-angular';
 import { SwitchComponent } from '../../shared/switch/switch.component';
 import { DropDownComponent } from '../../shared/drop-down/drop-down.component';
@@ -12,9 +12,10 @@ import { DropDownComponent } from '../../shared/drop-down/drop-down.component';
 export class FilterComponent {
   @ViewChild(DropDownComponent) dropdown!: DropDownComponent;
 
-  switchButtonValue = signal(true);
+  @Input() cuisines: string[] = [];
+  @Input() orderBy: string[] = [];
 
-  cuisines = ['Italian', 'Japanese', 'American'];
+  switchButtonValue = signal(true);
 
   handleSwitchButtonValueSwap(value: boolean) {
     this.switchButtonValue.set(value);
