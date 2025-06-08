@@ -36,10 +36,38 @@
 }
 
 .menus-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+
+.clear-btn {
+  flex: 1;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: var(--foreground);
+  color: var(--card);
+}
+
+.clear-btn:hover {
+  opacity: 0.8;
 }
 
 app-drop-down {
   flex: 1; /* Sprawia, że komponent <app-drop-down> będzie rósł i zajmował dostępną przestrzeń */
+}
+
+@media (max-width: 800px) {
+  .menus-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .menus-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -1,3 +1,16 @@
-<div class="container">
-  <p>{{ defaultValue }}</p>
+<div class="container" (click)="handleOpenChange()">
+  <div class="values">
+    <lucide-angular [img]="Utensils" size="16"></lucide-angular>
+    <p>{{ activeOption() || defaultValue }}</p>
+  </div>
+  <lucide-angular size="16" [img]="ArrowDown"></lucide-angular>
+
+  <div class="dropdown-menu" *ngIf="isOpen()">
+    <ul>
+      <li>{{ defaultValue }}</li>
+      <ng-container *ngFor="let option of options">
+        <li (click)="selectOption(option)">{{ option }}</li>
+      </ng-container>
+    </ul>
+  </div>
 </div>

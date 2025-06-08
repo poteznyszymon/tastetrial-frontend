@@ -5,9 +5,15 @@
       <input id="input" type="text" placeholder="Search for Restaurant" />
     </label>
     <div class="menus-container">
-      <app-drop-down defaultValue="All Cuisines"></app-drop-down>
+      <app-drop-down
+        defaultValue="All Cuisines"
+        [options]="cuisines"
+      ></app-drop-down>
       <app-drop-down defaultValue="All Prices"></app-drop-down>
       <app-drop-down defaultValue="Cheapest"></app-drop-down>
+      <button class="clear-btn" (click)="dropdown.reset()">
+        Clear All Filters
+      </button>
     </div>
     <app-switch
       [value]="switchButtonValue()"
