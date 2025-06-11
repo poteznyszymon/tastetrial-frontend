@@ -18,12 +18,14 @@
   padding: 0.6rem 1rem;
   transition: box-shadow 0.3s ease, border 0.3s ease;
   gap: 1rem;
+  position: relative;
 }
 
 .input-wrapper > input {
   border: none;
   outline: none;
   width: 100%;
+  padding-right: 1rem;
 }
 
 .input-wrapper:focus-within {
@@ -33,6 +35,20 @@
 
 .input-wrapper lucide-angular {
   color: var(--muted-foreground);
+}
+
+.close-wrapper {
+  cursor: pointer;
+  position: absolute;
+  padding: 0.2rem;
+  border-radius: 50%;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.close-wrapper:hover {
+  background-color: var(--muted);
 }
 
 .menus-container {

@@ -2,20 +2,34 @@
   <div class="container">
     <label for="input" class="input-wrapper">
       <lucide-angular size="16" [img]="SearchIcon"></lucide-angular>
-      <input id="input" type="text" placeholder="Search for Restaurant..." />
+      <input
+        id="input"
+        type="text"
+        placeholder="Search for Restaurant..."
+        [value]="textValue()"
+        (input)="handleChange($event)"
+      />
+      <div class="close-wrapper" *ngIf="textValue()" (click)="handleReset()">
+        <lucide-angular [img]="XIcon" size="16"></lucide-angular>
+      </div>
     </label>
     <div class="menus-container">
       <app-drop-down
         defaultValue="All Cuisines"
         [options]="cuisines"
         [multiple]="true"
+        [icon]="Utensils"
       ></app-drop-down>
-      <app-drop-down defaultValue="All Prices"></app-drop-down>
+      <app-drop-down
+        defaultValue="All Prices"
+        [icon]="DolarIcon"
+      ></app-drop-down>
       <app-drop-down
         defaultValue="No order"
         [options]="orderBy"
+        [icon]="Arrows"
       ></app-drop-down>
-      <button class="clear-btn" (click)="dropdown.reset()">
+      <button class="clear-btn" (click)="resetAllDropdowns()">
         Clear All Filters
       </button>
     </div>

@@ -12,6 +12,7 @@ import {
   Check,
   ChevronDown,
   LucideAngularModule,
+  LucideIconData,
   Utensils,
 } from 'lucide-angular';
 
@@ -26,14 +27,12 @@ export class DropDownComponent {
   @Input() defaultValue: string = '';
   @Input() options: string[] = [];
   @Input() multiple: boolean = false;
+  @Input() icon!: LucideIconData;
 
   @Output() selectionChange = new EventEmitter<string>();
 
   isOpen = signal(false);
   activeOption = signal<string[]>([]);
-
-  ArrowDown = ChevronDown;
-  Utensils = Utensils;
 
   constructor(private elementRef: ElementRef) {}
 
@@ -81,5 +80,6 @@ export class DropDownComponent {
     return `${this.activeOption().length} selected`;
   }
 
-  CheckIcon = Check;
+  readonly CheckIcon = Check;
+  readonly ArrowDown = ChevronDown;
 }

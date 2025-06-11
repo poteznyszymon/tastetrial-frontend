@@ -1,4 +1,5 @@
 import { Address } from './address';
+import { Image } from './image';
 
 export interface Restaurant {
   id: number;
@@ -16,6 +17,8 @@ export interface Restaurant {
   totalReviews: number;
 
   address: Address;
+
+  images: Image[];
 
   geolocation: Geolocation;
 }

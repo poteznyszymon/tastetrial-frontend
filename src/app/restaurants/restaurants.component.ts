@@ -3,10 +3,16 @@ import { RestaurantsService } from '../service/restaurants/restaurants.service';
 import { CommonModule } from '@angular/common';
 import { ResourceErrorPageComponent } from '../components/shared/resource-error-page/resource-error-page.component';
 import { FilterComponent } from '../components/restaurants/filter/filter.component';
+import { RestaurantCardComponent } from '../components/shared/restaurant-card/restaurant-card.component';
 
 @Component({
   selector: 'app-restaurants',
-  imports: [CommonModule, ResourceErrorPageComponent, FilterComponent],
+  imports: [
+    CommonModule,
+    ResourceErrorPageComponent,
+    FilterComponent,
+    RestaurantCardComponent,
+  ],
   templateUrl: './restaurants.component.html',
   styleUrl: './restaurants.component.css',
 })
@@ -16,18 +22,18 @@ export class RestaurantsComponent {
   isError$;
 
   cuisines = [
-    'ITALIAN',
-    'FRENCH',
-    'AMERICAN',
-    'MEXICAN',
-    'CHINESE',
-    'JAPANESE',
-    'INDIAN',
-    'THAI',
-    'SPANISH',
-    'MEDITERRANEAN',
-    'VEGAN',
-    'OTHER',
+    'American',
+    'Chinese',
+    'French',
+    'Indian',
+    'Italian',
+    'Japanese',
+    'Mediterranean',
+    'Mexican',
+    'Spanish',
+    'Thai',
+    'vegan',
+    'other',
   ];
 
   orderBy = [

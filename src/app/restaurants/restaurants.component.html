@@ -21,7 +21,15 @@
         loading
       </ng-container>
 
-      <ng-template #restaurants></ng-template>
+      <ng-template #restaurants>
+        <div class="restaurants-grid">
+          <ng-container *ngFor="let restaurant of restaurants$ | async">
+            <app-restaurant-card
+              [restaurant]="restaurant"
+            ></app-restaurant-card>
+          </ng-container>
+        </div>
+      </ng-template>
     </div>
   </section>
 </ng-template>

@@ -57,14 +57,15 @@ textarea:focus {
 .stars {
   display: flex;
   align-items: center;
+  gap: 0.1rem;
 }
 
 .empty {
-  color: var(--border);
+  fill: var(--border);
 }
 
 .filled {
-  color: var(--gold-star);
+  fill: var(--gold-star);
 }
 
 .alert-wrapper {
