@@ -1,0 +1,23 @@
+<div class="container">
+  <ng-container *ngFor="let step of createRange(); let i = index">
+    <div
+      class="circle"
+      [ngClass]="{
+        active: step <= currentStep - 1,
+        current: step === currentStep - 1
+      }"
+    >
+      <p *ngIf="step >= currentStep - 1">{{ i + 1 }}</p>
+      <lucide-angular
+        size="18"
+        *ngIf="step < currentStep - 1"
+        [img]="Check"
+      ></lucide-angular>
+    </div>
+    <div
+      class="spacer"
+      [ngClass]="{ active: step <= currentStep - 2 }"
+      *ngIf="i < createRange().length - 1"
+    ></div>
+  </ng-container>
+</div>

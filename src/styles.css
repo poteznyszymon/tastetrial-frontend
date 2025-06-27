@@ -8,6 +8,10 @@
   font-family: "Inter";
 }
 
+button:focus {
+  box-shadow: 0 0 0 3px var(--border);
+}
+
 a {
   all: unset;
 }

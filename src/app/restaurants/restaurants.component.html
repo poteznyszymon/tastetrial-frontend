@@ -18,7 +18,11 @@
       <app-filter [cuisines]="cuisines" [orderBy]="orderBy"></app-filter>
 
       <ng-container *ngIf="isLoading$ | async; else restaurants">
-        loading
+        <div class="restaurants-grid">
+          <ng-container *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+            <app-skeleton class="skeleton"></app-skeleton>
+          </ng-container>
+        </div>
       </ng-container>
 
       <ng-template #restaurants>

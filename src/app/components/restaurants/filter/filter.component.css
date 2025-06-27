@@ -77,6 +77,16 @@ app-drop-down {
   flex: 1; /* Sprawia, że komponent <app-drop-down> będzie rósł i zajmował dostępną przestrzeń */
 }
 
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bottom > p {
+  font-size: 0.85rem;
+}
+
 @media (max-width: 800px) {
   .menus-container {
     grid-template-columns: repeat(2, 1fr);

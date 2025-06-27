@@ -25,6 +25,8 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  box-sizing: border-box;
+  justify-content: space-between;
 }
 
 .title {
@@ -48,6 +50,15 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--muted);
+}
+
+.rating-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .stars {
@@ -89,4 +100,44 @@ svg.active {
 .cuisine:hover {
   transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.05)
     scaleY(1.05);
+}
+
+.details-button {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  background-color: var(--card);
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: fit-content;
+  gap: 0.3rem;
+  margin-left: auto;
+}
+
+.details-button:hover {
+  background-color: var(--muted);
+}
+
+.favourite-wrapper {
+  height: 2.1rem;
+  width: 2.1rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background-color: var(--card);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+}
+
+.favourite-wrapper:hover {
+  background-color: var(--muted);
 }

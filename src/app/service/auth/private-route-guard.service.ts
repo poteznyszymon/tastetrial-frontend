@@ -10,9 +10,15 @@ export class PrivateRouteGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
 
   async canActivate(): Promise<boolean> {
-    const user = await firstValueFrom(this.auth.getCurrentUser());
+    const currentUser = await firstValueFrom(this.auth.getCurrentUser());
 
-    if (!user) {
+    if (!currentUser) {
+      await this.auth.authorizeUser('revalidate');
+    }
+
+    const updatedUser = await firstValueFrom(this.auth.getCurrentUser());
+
+    if (!updatedUser) {
       await this.router.navigate(['auth/login']);
       return false;
     } else {

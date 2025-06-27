@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ResourceErrorPageComponent } from '../components/shared/resource-error-page/resource-error-page.component';
 import { FilterComponent } from '../components/restaurants/filter/filter.component';
 import { RestaurantCardComponent } from '../components/shared/restaurant-card/restaurant-card.component';
+import { SkeletonComponent } from '../components/skeleton/skeleton.component';
 
 @Component({
   selector: 'app-restaurants',
@@ -12,6 +13,7 @@ import { RestaurantCardComponent } from '../components/shared/restaurant-card/re
     ResourceErrorPageComponent,
     FilterComponent,
     RestaurantCardComponent,
+    SkeletonComponent,
   ],
   templateUrl: './restaurants.component.html',
   styleUrl: './restaurants.component.css',

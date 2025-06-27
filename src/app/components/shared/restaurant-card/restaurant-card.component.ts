@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Restaurant } from '../../../models/restaurant';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, Star } from 'lucide-angular';
+import { ChevronRight, Heart, LucideAngularModule, Star } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,4 +15,6 @@ export class RestaurantCardComponent {
 
   /// Icons
   StarIcon = Star;
+  Arrow = ChevronRight;
+  HeartIcon = Heart;
 }

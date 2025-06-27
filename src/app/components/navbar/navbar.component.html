@@ -2,7 +2,6 @@
   <div class="navbar-inner-container">
     <a routerLink="/" (click)="handleMenuClick(true)"><h3>TasteTrial</h3></a>
     <div class="desktop-links" *ngIf="!(isLoading$ | async)">
-      <a routerLink="" class="link"><p>Home</p></a>
       <a
         *ngIf="user$ | async as user"
         [routerLink]="'/profile/' + user.username"
@@ -10,6 +9,9 @@
         ><p>Profile</p></a
       >
       <a routerLink="/restaurants" class="link"><p>Restaurants</p></a>
+      <a *ngIf="user$ | async as user" routerLink="/add" class="link"
+        >Add Restaurant</a
+      >
     </div>
     <div
       *ngIf="(user$ | async) === null && (isLoading$ | async) === false"

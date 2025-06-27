@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.circle {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  box-sizing: border-box;
+}
+
+.circle.active {
+  background-color: var(--primary);
+  color: var(--card);
+}
+
+.circle.active.current {
+  background-color: var(--error-background);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.spacer {
+  width: 3.5rem;
+  height: 0.2rem;
+  background-color: var(--border);
+}
+
+.spacer.active {
+  background-color: var(--primary);
+}

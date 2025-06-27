@@ -33,9 +33,12 @@
         Clear All Filters
       </button>
     </div>
-    <app-switch
-      [value]="switchButtonValue()"
-      (valueChange)="handleSwitchButtonValueSwap($event)"
-    ></app-switch>
+    <div class="bottom">
+      <app-switch
+        [value]="switchButtonValue()"
+        (valueChange)="handleSwitchButtonValueSwap($event)"
+      ></app-switch>
+      <p>Open only</p>
+    </div>
   </div>
 </div>

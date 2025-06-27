@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PublicRouteGuardService } from './service/auth/public-route-guard.service';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ReviewsComponent } from './profile/reviews/reviews.component';
+import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,11 @@ export const routes: Routes = [
   {
     path: 'restaurants',
     component: RestaurantsComponent,
+  },
+  {
+    path: 'add',
+    component: AddRestaurantComponent,
+    canActivate: [PrivateRouteGuardService],
   },
   {
     path: '**',
