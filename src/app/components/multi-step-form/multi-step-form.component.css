@@ -137,6 +137,12 @@ textarea:focus {
   grid-template-columns: 1fr 1fr;
 }
 
+.error {
+  font-size: 0.75rem;
+  color: var(--error-primary);
+  font-weight: 500;
+}
+
 @media (max-width: 550px) {
   .grid {
     grid-template-columns: 1fr;
