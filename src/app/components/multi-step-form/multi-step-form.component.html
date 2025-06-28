@@ -1,6 +1,50 @@
 <form>
   <app-current-step-info [currentStep]="step()"></app-current-step-info>
-  <div class="wrapper"></div>
+  <div class="wrapper">
+    @switch (step()) { @case (1) {
+    <div class="header">
+      <lucide-angular [img]="utensils" size="20"></lucide-angular>
+      <p>Basic Information</p>
+    </div>
+    <div class="grid">
+      <div class="column">
+        <label for="name">Restaurant Name *</label>
+        <input id="name" type="text" placeholder="Enter restaurant name" />
+      </div>
+      <div class="column">
+        <label for="dropdown">Cuisine Type *</label>
+        <app-drop-down
+          defaultValue="Select Cuisine"
+          [options]="cuisines"
+          [icon]="utensils"
+        ></app-drop-down>
+      </div>
+      <div class="column">
+        <label for="phone">Phone number</label>
+        <input id="phone" type="tel" placeholder="Enter phone number" />
+      </div>
+      <div class="column">
+        <label for="website">Website Url</label>
+        <input id="website" placeholder="Enter website url" type="url" />
+      </div>
+    </div>
+
+    <div class="column">
+      <label for="desciption">Description *</label>
+      <textarea
+        name=""
+        id="desciption"
+        placeholder="Describe the restaurant, its atmosphere, specialties, and what makes it unique..."
+      ></textarea>
+    </div>
+    } @case (2) {
+    <div>2</div>
+    } @case (3) {
+    <div>3</div>
+    } @case (4) {
+    <div>4</div>
+    } }
+  </div>
   <div class="buttons">
     <button
       [disabled]="step() === 1"
@@ -19,3 +63,5 @@
     </button>
   </div>
 </form>
+
+<ng-template #first>xd</ng-template>

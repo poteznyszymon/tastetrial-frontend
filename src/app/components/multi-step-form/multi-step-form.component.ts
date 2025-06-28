@@ -1,15 +1,36 @@
 import { Component, signal } from '@angular/core';
 import { CurrentStepInfoComponent } from '../current-step-info/current-step-info.component';
-import { ChevronLeft, ChevronRight, LucideAngularModule } from 'lucide-angular';
+import {
+  ChevronLeft,
+  ChevronRight,
+  LucideAngularModule,
+  Utensils,
+} from 'lucide-angular';
+import { DropDownComponent } from '../shared/drop-down/drop-down.component';
 
 @Component({
   selector: 'app-multi-step-form',
-  imports: [CurrentStepInfoComponent, LucideAngularModule],
+  imports: [CurrentStepInfoComponent, LucideAngularModule, DropDownComponent],
   templateUrl: './multi-step-form.component.html',
   styleUrl: './multi-step-form.component.css',
 })
 export class MultiStepFormComponent {
   step = signal(1);
+
+  cuisines = [
+    'American',
+    'Chinese',
+    'French',
+    'Indian',
+    'Italian',
+    'Japanese',
+    'Mediterranean',
+    'Mexican',
+    'Spanish',
+    'Thai',
+    'vegan',
+    'other',
+  ];
 
   nextStep(event: Event) {
     event.preventDefault();
@@ -27,4 +48,5 @@ export class MultiStepFormComponent {
 
   left = ChevronLeft;
   right = ChevronRight;
+  utensils = Utensils;
 }

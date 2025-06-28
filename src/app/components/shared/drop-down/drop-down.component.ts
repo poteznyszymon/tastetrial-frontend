@@ -36,7 +36,8 @@ export class DropDownComponent {
 
   constructor(private elementRef: ElementRef) {}
 
-  handleOpenChange() {
+  handleOpenChange(event: Event) {
+    event.preventDefault();
     this.isOpen.update((val) => !val);
   }
 
