@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="form">
   <div class="header">
-    <lucide-angular [img]="utensils" size="20"></lucide-angular>
+    <lucide-angular [img]="utensils" size="18"></lucide-angular>
     <p>Basic Information</p>
   </div>
 
@@ -50,6 +50,15 @@
         placeholder="Enter phone number"
         formControlName="phoneNumber"
       />
+      <p
+        class="error"
+        *ngIf="
+          form.get('phoneNumber')?.touched &&
+          form.get('phoneNumber')?.hasError('pattern')
+        "
+      >
+        Invalid phone number
+      </p>
     </div>
 
     <div class="column">
@@ -60,6 +69,15 @@
         type="url"
         formControlName="website"
       />
+      <p
+        class="error"
+        *ngIf="
+          form.get('website')?.touched &&
+          form.get('website')?.hasError('pattern')
+        "
+      >
+        Invalid website url
+      </p>
     </div>
   </div>
 
@@ -69,6 +87,7 @@
       id="description"
       placeholder="Describe the restaurant, its atmosphere, specialties, and what makes it unique..."
       formControlName="description"
+      maxlength="500"
     ></textarea>
     <p
       class="error"
@@ -78,6 +97,9 @@
       "
     >
       Description is required
+    </p>
+    <p *ngIf="form.value['description']?.length > 0" class="counter">
+      {{ form.value["description"].length }}/500 characters
     </p>
   </div>
 </div>

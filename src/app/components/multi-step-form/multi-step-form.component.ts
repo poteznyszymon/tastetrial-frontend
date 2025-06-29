@@ -15,16 +15,17 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormStep1Component } from '../forms/form-step-1/form-step-1.component';
+import { FormStep2Component } from '../forms/form-step-2/form-step-2.component';
 
 @Component({
   selector: 'app-multi-step-form',
   imports: [
     CurrentStepInfoComponent,
     LucideAngularModule,
-    DropDownComponent,
     CommonModule,
     ReactiveFormsModule,
     FormStep1Component,
+    FormStep2Component,
   ],
   templateUrl: './multi-step-form.component.html',
   styleUrl: './multi-step-form.component.css',
@@ -38,9 +39,43 @@ export class MultiStepFormComponent {
       step1: this.formBuilder.group({
         name: ['', Validators.required],
         cuisine: ['', Validators.required],
-        phoneNumber: [''],
-        website: [''],
+        phoneNumber: ['', Validators.pattern(/^[0-9\s\-]{9,15}$/)],
+        website: [
+          '',
+          Validators.pattern(
+            /^(https?:\/\/)?([\w\-]+\.)+[a-z]{2,6}([\/\w\-.~:?#[\]@!$&'()*+,;=]*)*\/?$/i
+          ),
+        ],
+
         description: ['', Validators.required],
+      }),
+      step2: this.formBuilder.group({
+        streetName: ['', [Validators.required, Validators.minLength(2)]],
+        streetNumber: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[0-9]+[a-zA-Z]?(\/[0-9]+[a-zA-Z]?)?$/),
+          ],
+        ],
+        city: [
+          '',
+          [Validators.required, Validators.pattern(/^[\p{L} .'-]{2,}$/u)],
+        ],
+        state: [
+          '',
+          [Validators.required, Validators.pattern(/^[\p{L} .'-]{2,}$/u)],
+        ],
+        postalCode: [
+          '',
+          [Validators.required, Validators.pattern(/^\d{2}-?\d{3}$/)],
+        ],
+        country: [
+          '',
+          [Validators.required, Validators.pattern(/^[\p{L} .'-]{2,}$/u)],
+        ],
+        latitude: ['10', Validators.required],
+        longitude: ['10', Validators.required],
       }),
     });
   }
@@ -77,6 +112,10 @@ export class MultiStepFormComponent {
 
   get step1Group(): FormGroup {
     return this.form.get('step1') as FormGroup;
+  }
+
+  get step2Group(): FormGroup {
+    return this.form.get('step2') as FormGroup;
   }
 
   left = ChevronLeft;

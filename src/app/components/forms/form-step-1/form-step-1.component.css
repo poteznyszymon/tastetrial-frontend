@@ -111,7 +111,9 @@ input:active {
 
 textarea {
   outline: none;
-  resize: none;
+  resize: vertical;
+  max-height: 10rem;
+  min-height: 5rem;
   height: 5rem;
   border-radius: var(--radius);
   border: 2px solid var(--border);
@@ -133,7 +135,7 @@ textarea:focus {
 
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -153,4 +155,9 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.counter {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
 }
