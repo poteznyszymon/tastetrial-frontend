@@ -14,6 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormStep1Component } from '../forms/form-step-1/form-step-1.component';
 
 @Component({
   selector: 'app-multi-step-form',
@@ -23,6 +24,7 @@ import { CommonModule } from '@angular/common';
     DropDownComponent,
     CommonModule,
     ReactiveFormsModule,
+    FormStep1Component,
   ],
   templateUrl: './multi-step-form.component.html',
   styleUrl: './multi-step-form.component.css',
@@ -51,6 +53,13 @@ export class MultiStepFormComponent {
     }
   }
 
+  prevStep(event: Event) {
+    event.preventDefault();
+    if (this.step() > 1) {
+      this.step.update((prev) => prev - 1);
+    }
+  }
+
   isCurrentStepValid() {
     const stepGroup = this.getStepFormGroup();
     stepGroup.markAllAsTouched();
@@ -61,16 +70,13 @@ export class MultiStepFormComponent {
     return this.form.get(`step${this.step()}`) as FormGroup;
   }
 
-  prevStep(event: Event) {
-    event.preventDefault();
-    if (this.step() > 1) {
-      this.step.update((prev) => prev - 1);
-    }
-  }
-
   handleCuisineChange(cuisine: string) {
     const step1 = this.form.get('step1') as FormGroup;
     step1.get('cuisine')?.setValue(cuisine);
+  }
+
+  get step1Group(): FormGroup {
+    return this.form.get('step1') as FormGroup;
   }
 
   left = ChevronLeft;

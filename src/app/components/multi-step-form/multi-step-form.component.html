@@ -2,86 +2,10 @@
   <app-current-step-info [currentStep]="step()"></app-current-step-info>
   <div class="wrapper">
     @switch (step()) { @case (1) {
-    <div class="header">
-      <lucide-angular [img]="utensils" size="20"></lucide-angular>
-      <p>Basic Information</p>
-    </div>
-    <div class="grid" formGroupName="step1">
-      <div class="column">
-        <label for="name">Restaurant Name *</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="Enter restaurant name"
-          formControlName="name"
-        />
-        <p
-          class="error"
-          *ngIf="
-            form.get('step1.name')?.touched &&
-            form.get('step1.name')?.hasError('required')
-          "
-        >
-          Name is required
-        </p>
-      </div>
-      <div class="column">
-        <label for="dropdown">Cuisine Type *</label>
-        <app-drop-down
-          (selectionChange)="handleCuisineChange($event)"
-          defaultValue="Select Cuisine"
-          [options]="cuisines"
-          [icon]="utensils"
-        ></app-drop-down>
-        <p
-          class="error"
-          *ngIf="
-            form.get('step1.cuisine')?.touched &&
-            form.get('step1.cuisine')?.hasError('required')
-          "
-        >
-          Cuisine is required
-        </p>
-      </div>
-
-      <div class="column">
-        <label for="phone">Phone number</label>
-        <input
-          id="phone"
-          type="tel"
-          placeholder="Enter phone number"
-          formControlName="phoneNumber"
-        />
-      </div>
-      <div class="column">
-        <label for="website">Website Url</label>
-        <input
-          id="website"
-          placeholder="Enter website url"
-          type="url"
-          formControlName="website"
-        />
-      </div>
-    </div>
-
-    <div class="column" formGroupName="step1">
-      <label for="description">Description *</label>
-      <textarea
-        name=""
-        id="description"
-        placeholder="Describe the restaurant, its atmosphere, specialties, and what makes it unique..."
-        formControlName="description"
-      ></textarea>
-      <p
-        class="error"
-        *ngIf="
-          form.get('step1.description')?.touched &&
-          form.get('step1.description')?.hasError('required')
-        "
-      >
-        Description is required
-      </p>
-    </div>
+    <app-form-step-1
+      [form]="step1Group"
+      [cuisines]="cuisines"
+    ></app-form-step-1>
     } @case (2) {
     <div>2</div>
     } @case (3) {
