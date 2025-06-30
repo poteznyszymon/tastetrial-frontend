@@ -30,6 +30,7 @@
         defaultValue="Select Cuisine"
         [options]="cuisines"
         [icon]="utensils"
+        [externalValue]="form.get('cuisine')?.value"
       ></app-drop-down>
       <p
         class="error"

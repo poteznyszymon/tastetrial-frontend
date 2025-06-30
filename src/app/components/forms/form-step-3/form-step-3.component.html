@@ -1,1 +1,144 @@
-<p>form-step-3 works!</p>
+<div [formGroup]="form" class="form">
+  <div class="header">
+    <lucide-angular [img]="clock" size="18"></lucide-angular>
+    <p>Operating Hours & Details</p>
+  </div>
+
+  <div class="grid">
+    <div class="column">
+      <div class="row">
+        <p class="day">Monday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('monday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('monday')?.touched &&
+          form.get('monday')?.hasError('required')
+        "
+      >
+        Monday operating hours are required
+      </p>
+    </div>
+    <div class="separator"></div>
+    <div class="column">
+      <div class="row">
+        <p class="day">Tuesday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('tuesday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('tuesday')?.touched &&
+          form.get('tuesday')?.hasError('required')
+        "
+      >
+        Tuesday operating hours are required
+      </p>
+    </div>
+    <div class="separator"></div>
+    <div class="column">
+      <div class="row">
+        <p class="day">Wednesday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('wednesday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('wednesday')?.touched &&
+          form.get('wednesday')?.hasError('required')
+        "
+      >
+        Wednesday operating hours are required
+      </p>
+    </div>
+    <div class="separator"></div>
+    <div class="column">
+      <div class="row">
+        <p class="day">Thursday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('thursday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('thursday')?.touched &&
+          form.get('thursday')?.hasError('required')
+        "
+      >
+        Thursday operating hours are required
+      </p>
+    </div>
+    <div class="separator"></div>
+
+    <div class="column">
+      <div class="row">
+        <p class="day">Friday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('friday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('friday')?.touched &&
+          form.get('friday')?.hasError('required')
+        "
+      >
+        Friday operating hours are required
+      </p>
+    </div>
+    <div class="separator"></div>
+
+    <div class="column">
+      <div class="row">
+        <p class="day">Saturday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('saturday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('saturday')?.touched &&
+          form.get('saturday')?.hasError('required')
+        "
+      >
+        Saturday operating hours are required
+      </p>
+    </div>
+    <div class="separator"></div>
+
+    <div class="column">
+      <div class="row">
+        <p class="day">Sunday:</p>
+        <app-operating-hours-selector
+          class="time"
+          [form]="stepGroup('sunday')"
+        ></app-operating-hours-selector>
+      </div>
+      <p
+        class="error"
+        *ngIf="
+          form.get('sunday')?.touched &&
+          form.get('sunday')?.hasError('required')
+        "
+      >
+        Sunday operating hours are required
+      </p>
+    </div>
+  </div>
+</div>

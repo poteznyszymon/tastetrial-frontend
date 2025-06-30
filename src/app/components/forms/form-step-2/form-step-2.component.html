@@ -169,7 +169,7 @@
       <label for="latitude">Latitude *</label>
       <input
         id="latitude"
-        type="text"
+        type="number"
         placeholder="Enter latitude"
         formControlName="latitude"
       />
@@ -191,12 +191,28 @@
       >
         Invalid latitude
       </p>
+      <p
+        class="error"
+        *ngIf="
+          form.get('latitude')?.touched && form.get('latitude')?.hasError('min')
+        "
+      >
+        The latitude value cannot be less than -90
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          form.get('latitude')?.touched && form.get('latitude')?.hasError('max')
+        "
+      >
+        The latitude value cannot be greater than 90
+      </p>
     </div>
     <div class="column">
       <label for="longitude">Longitude *</label>
       <input
         id="longitude"
-        type="text"
+        type="number"
         placeholder="Enter country"
         formControlName="longitude"
       />
@@ -217,6 +233,24 @@
         "
       >
         Invalid longitude
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          form.get('longitude')?.touched &&
+          form.get('longitude')?.hasError('min')
+        "
+      >
+        The longitude value cannot be less than -180
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          form.get('longitude')?.touched &&
+          form.get('longitude')?.hasError('max')
+        "
+      >
+        The longitude value cannot be greater than 180
       </p>
     </div>
   </div>

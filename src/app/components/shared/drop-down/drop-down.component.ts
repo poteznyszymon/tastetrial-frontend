@@ -30,6 +30,15 @@ export class DropDownComponent {
   @Input() icon!: LucideIconData;
 
   @Output() selectionChange = new EventEmitter<string>();
+  @Output() selectedDefaultValue = new EventEmitter<void>();
+
+  @Input() set externalValue(value: any) {
+    if (value) {
+      this.activeOption.set([value]);
+    } else {
+      this.activeOption.set([]);
+    }
+  }
 
   isOpen = signal(false);
   activeOption = signal<string[]>([]);
@@ -61,6 +70,7 @@ export class DropDownComponent {
   }
 
   reset() {
+    this.selectedDefaultValue.emit();
     this.activeOption.set([]);
   }
 

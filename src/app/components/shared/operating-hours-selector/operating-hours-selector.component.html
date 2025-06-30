@@ -1,0 +1,22 @@
+<div class="row" [formGroup]="form">
+  <app-drop-down
+    [icon]="clock"
+    defaultValue="closed"
+    [options]="hours"
+    class="time"
+    (selectionChange)="handleOpenTimeChange($event, 'open')"
+    (selectedDefaultValue)="handleCloseSelect()"
+    [externalValue]="openTime() || form.get('openTime')?.value"
+  ></app-drop-down>
+  <p *ngIf="openTime() || form.get('openTime')?.value" class="separator">to</p>
+  <app-drop-down
+    *ngIf="openTime() || form.get('openTime')?.value"
+    [icon]="clock"
+    defaultValue="closed"
+    [options]="hours"
+    class="time"
+    (selectedDefaultValue)="handleCloseSelect()"
+    (selectionChange)="handleOpenTimeChange($event, 'close')"
+    [externalValue]="closeTime() || form.get('closeTime')?.value"
+  ></app-drop-down>
+</div>

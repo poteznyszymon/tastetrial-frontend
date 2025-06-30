@@ -3,13 +3,13 @@
   <div class="wrapper">
     @switch (step()) { @case (1) {
     <app-form-step-1
-      [form]="step1Group"
+      [form]="stepGroup('step1')"
       [cuisines]="cuisines"
     ></app-form-step-1>
     } @case (2) {
-    <app-form-step-2 [form]="step2Group"></app-form-step-2>
+    <app-form-step-2 [form]="stepGroup('step2')"></app-form-step-2>
     } @case (3) {
-    <div>3</div>
+    <app-form-step-3 [form]="stepGroup('step3')"></app-form-step-3>
     } @case (4) {
     <div>4</div>
     } }

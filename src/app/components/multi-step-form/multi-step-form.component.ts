@@ -16,6 +16,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormStep1Component } from '../forms/form-step-1/form-step-1.component';
 import { FormStep2Component } from '../forms/form-step-2/form-step-2.component';
+import { FormStep3Component } from '../forms/form-step-3/form-step-3.component';
 
 @Component({
   selector: 'app-multi-step-form',
@@ -26,6 +27,7 @@ import { FormStep2Component } from '../forms/form-step-2/form-step-2.component';
     ReactiveFormsModule,
     FormStep1Component,
     FormStep2Component,
+    FormStep3Component,
   ],
   templateUrl: './multi-step-form.component.html',
   styleUrl: './multi-step-form.component.css',
@@ -74,8 +76,23 @@ export class MultiStepFormComponent {
           '',
           [Validators.required, Validators.pattern(/^[\p{L} .'-]{2,}$/u)],
         ],
-        latitude: ['10', Validators.required],
-        longitude: ['10', Validators.required],
+        latitude: [
+          10,
+          [Validators.required, Validators.min(-90), Validators.max(90)],
+        ],
+        longitude: [
+          10,
+          [Validators.required, Validators.min(-180), Validators.max(180)],
+        ],
+      }),
+      step3: this.formBuilder.group({
+        monday: this.formBuilder.group({ openTime: null, closeTime: null }),
+        tuesday: this.formBuilder.group({ openTime: null, closeTime: null }),
+        wednesday: this.formBuilder.group({ openTime: null, closeTime: null }),
+        thursday: this.formBuilder.group({ openTime: null, closeTime: null }),
+        friday: this.formBuilder.group({ openTime: null, closeTime: null }),
+        saturday: this.formBuilder.group({ openTime: null, closeTime: null }),
+        sunday: this.formBuilder.group({ openTime: null, closeTime: null }),
       }),
     });
   }
@@ -110,12 +127,8 @@ export class MultiStepFormComponent {
     step1.get('cuisine')?.setValue(cuisine);
   }
 
-  get step1Group(): FormGroup {
-    return this.form.get('step1') as FormGroup;
-  }
-
-  get step2Group(): FormGroup {
-    return this.form.get('step2') as FormGroup;
+  stepGroup(step: string): FormGroup {
+    return this.form.get(step) as FormGroup;
   }
 
   left = ChevronLeft;
